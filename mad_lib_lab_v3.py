@@ -66,6 +66,4 @@ def collectInfo():
 #start of the program --- point to function
 collectInfo()
 
-
-
 print("\nThank you for using Madlib-The Farmer")
