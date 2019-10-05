@@ -37,8 +37,21 @@ responses_list = ["It is certain",
 "Outlook not so good",
 "Very doubtful"]
 
-print("Welcome to Magic 8-Ball!\n")
+def user_input_processing_output():
+    user_question = input("\nAsk the Magic 8-Ball a question: ")
+    print(f"\nThe prediction is: {random.choice(responses_list)}")
 
-user_question = input("Ask the Magic 8-Ball a question: ")
+def play_again():
+    play_again = (input("\nDo you want to play again (yes/no)? ")).lower()
+    if play_again in ["yes", "y"]:
+        main()
+    else:
+        print("\nThank you for playing!!!")
+        exit()
 
-print(f"\nThe prediction is: {random.choice(responses_list)}")
+def main():
+    user_input_processing_output()
+    play_again()
+
+print("\nWelcome to Magic 8-Ball!\n")
+main()
