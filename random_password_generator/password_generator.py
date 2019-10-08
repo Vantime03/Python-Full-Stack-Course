@@ -24,32 +24,56 @@ from string import ascii_uppercase
 from string import digits
 from string import punctuation
 
-# variables
-password = []
+#function
+
+def process_password(num_len, lower_len, upper_len, special_len):
+    password = []
+    n=0
+    while n < num_len:
+        password.append(random.choice(digits))
+        n+=1
+    n=0
+    while n < lower_len:
+        password.append(random.choice(ascii_lowercase))
+        n+=1
+    n=0
+    while n < upper_len:
+        password.append(random.choice(ascii_uppercase))
+        n+=1
+    n=0
+    while n < special_len:
+        password.append(random.choice(punctuation))
+        n+=1
+    random.shuffle(password)
+    str_password = "".join(password)
+    print(f"\nHere is your password: {str_password}")
+
+
 print("Welcome to password generator!\n")
 num_len = int(input("How many characters do you want your password to have?"))
 lower_len = int(input("How many characters do you want your password to have?"))
 upper_len = int(input("How many characters do you want your password to have?"))
 special_len = int(input("How many characters do you want your password to have?"))
 
-#processing Password
-n=0
-while n < num_len:
-    password.append(random.choice(digits))
-    n+=1
-n=0
-while n < lower_len:
-    password.append(random.choice(ascii_lowercase))
-    n+=1
-n=0
-while n < upper_len:
-    password.append(random.choice(ascii_uppercase))
-    n+=1
-n=0
-while n < special_len:
-    password.append(random.choice(punctuation))
-    n+=1
-random.shuffle(password)
-str_password = "".join(password)
+process_password(num_len,lower_len,upper_len,special_len)
 
-print(f"\nHere is your password: {str_password}")
+# n=0
+# while n < num_len:
+#     password.append(random.choice(digits))
+#     n+=1
+# n=0
+# while n < lower_len:
+#     password.append(random.choice(ascii_lowercase))
+#     n+=1
+# n=0
+# while n < upper_len:
+#     password.append(random.choice(ascii_uppercase))
+#     n+=1
+# n=0
+# while n < special_len:
+#     password.append(random.choice(punctuation))
+#     n+=1
+# random.shuffle(password)
+# str_password = "".join(password)
+
+# print(f"\nHere is your password: {str_password}")
