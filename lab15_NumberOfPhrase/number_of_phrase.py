@@ -11,6 +11,7 @@ Hint 2: use the digit as an index for a list of strings.
 
 '''
 dict_10_to_19 = {
+    10: "ten",
     11: "eleven",
     12: "twelve",
     13: "thirteen",
@@ -44,18 +45,31 @@ dict_10_digit = {
     9: "ninety",
 }
 def convert_to_phrase(numb):
-    tens_digit = numb // 10
-    ones_digit = numb % 10
-    if numb < 10:
-        return dict_one_digit.get(numb)
-    elif 10 <= numb < 20:
-        return dict_10_digit.get(tens_digit)[numb]
-    else:
-        return dict_10_digit.get(tens_digit) + "-" + dict_one_digit.get(ones_digit)
+    hundreds_digit = numb // 100
+    tens_digit = (numb % 100) // 10 #if numb is 999, (999 % 100) // 10 = 9
+    ones_digit = (numb % 100) % 10
+    result = ""
+    if numb in [100, 200, 300, 400, 500, 600, 700, 800, 900]:
+        return dict_one_digit.get(hundreds_digit) + " hundred"
+    if 0 < hundreds_digit < 10:
+        result += dict_one_digit.get(hundreds_digit) + " hundred "
+    if tens_digit > 0 and tens_digit != 1:
+        result += dict_10_digit.get(tens_digit) + " "
+    elif tens_digit == 1:
+        add = dict_10_digit.get(1)[numb % 100]
+        print(add)
+        result += add
+        return result
+    if ones_digit > 0: 
+        result += dict_one_digit.get(ones_digit)
+        return result
 
 def main():
     print("Welcome to Number of phrase!")
     user_input = int(input("Enter an integer: "))
-    print(f"phrase for {user_input} is {convert_to_phrase(user_input)}")
+    result = convert_to_phrase(user_input)
+    print(f"phrase for {user_input} is {result}")
 
 main()
+
+
