@@ -101,6 +101,7 @@ while total_times < play_count:
     winning_numb = []
     user_random_numb = []
     # print(total_times)
+    
 print(f"***Result***\nWin ratio: {round(((win_count/total_times)*100), 2)}%")
 print(f"Total winning: ${total_winning}")
 print(f"Total cost for buying {total_times} tickets: ${total_times*2}")
