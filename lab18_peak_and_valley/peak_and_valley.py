@@ -51,7 +51,4 @@ def main():
     combine.sort()
     print(f"Peaks and Valleys: {combine}")
 
-
-    
-    # print(f"With this list of data {data}, peaks are {}, valleys are {}, and the complete list of peaks and valleys are {}")
 main()
