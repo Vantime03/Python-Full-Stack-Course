@@ -10,6 +10,7 @@ Write a function check_palindrome which takes a string, and returns True if the 
 
 >>> enter a word: palindrome
 >>> 'palindrome' is not a palindrome
+
 '''
 
 def check_palindrome(input_string):
@@ -23,7 +24,7 @@ def check_palindrome(input_string):
 
 def main():
     print("Welcome to Palindrome checker!")
-    input_string = input("Enter a string to check for palindrome: ")
+    input_string = (input("Enter a string to check for palindrome: ")).lower()
     if check_palindrome(input_string) is True:
         print(f"\"{input_string}\" is a palindrome")
     else:
