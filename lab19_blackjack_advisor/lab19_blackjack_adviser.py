@@ -56,7 +56,7 @@ def process_points(first, second, third):
     display_result(sum)
 
 def main():
-    print("Welcome to Blackjack Advisor!")
+    print("Welcome to Blackjack Advisor!\n")
     first_card = (input("What is your first card? (e.g. A=Ace, J=Jack, Q=Queen, K=King) ")).lower()
     second_card = (input("What is your second card? ")).lower()
     third_card = (input("What is your third card? " )).lower()
