@@ -62,7 +62,7 @@ def display_result(ari):
     if ari > 14:
         ari = 14
         ari_max = True
-    print(f"This corresponds to a {ari_scale[ari]['grade_level']} of difficulty")
+    print(f"This corresponds to a {ari_scale[ari]['grade_level']} of difficulty.")
     if ari_max == True:
         print(f"that is suitable for an average person greater than 22 years old.")
     else: 
