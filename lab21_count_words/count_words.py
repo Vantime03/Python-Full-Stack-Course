@@ -47,6 +47,8 @@ def process_dictionary(book_string):
             first_word = second_word
             second_word = ""
 
+            
+
 
 
 def finding_top_ten():
