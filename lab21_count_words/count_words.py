@@ -16,7 +16,7 @@ for i in range(min(10, len(words))):  # print the top 10 words, or all of them, 
     
 '''
 import string
-book= open("C:\\Users\\vanbinhluong\\Desktop\\PythonFullStack\\lab21_count_words\\VERSES_BY_H_BELLOC.txt", encoding="utf-8")
+book= open("C:\\Users\\vanbinhluong\\Desktop\\PythonFullStack\\lab21_count_words\\Wealth_Against_Commonwealth.txt", encoding="utf-8")
 book_dict = {}
 
 def strip_punctuation(book_string):
