@@ -27,11 +27,52 @@ ari_scale = {
 }
 
 def sum_sentences():
-    with open(book,"r") as book_string:
-        for line in book_string:
-            print(line)
+    line_count = 0
+    with open(book,"r") as book_text:
+        book_string = book_text.read()
+        for char in range (len(book_string)):
+            if book_string[char] in [".", ".\"", "?", "!"]:
+                line_count += 1
+        return line_count
+
+def sum_character():
+    with open(book,"r") as book_text:
+        book_string = book_text.read()
+        return len(book_string)
+
+def sum_words():
+    with open(book, "r") as book_text:
+        book_string = book_text.read()
+        word = ""
+        count = 0
+        for char in book_string:
+            if char in string.ascii_letters:
+                word += char
+            elif char not in string.ascii_letters and word != "":
+                count += 1
+                word = ""
+        return count
+
+def calculate_ari(sentence, character, word):
+    return round((4.71*(character/word) + 0.5*(word/sentence) - 21.43), 0)
+
+def display_result(ari):
+    ari_max = False
+    print(f"The ARI for {book[64::]} is {ari}")
+    if ari > 14:
+        ari = 14
+        ari_max = True
+    print(f"This corresponds to a {ari_scale[ari]['grade_level']} of difficulty")
+    if ari_max == True:
+        print(f"that is suitable for an average person greater than 22 years old.")
+    else: 
+        print(f"that is suitable for an average person {ari_scale[ari]['ages']} years old.")
 
 def main():
+    count_sentence = sum_sentences() # count sentences
+    count_character = sum_character() # count characters
+    count_words = sum_words() # count words
+    ari = calculate_ari(count_sentence, count_character, count_words)
+    display_result(ari)
 
-
-
+main()
