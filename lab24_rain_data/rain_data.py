@@ -79,7 +79,7 @@ def plot():
         if str(date.year) == user_input:
             if str(date.month) != current_month:
                 plt.plot(current_month, sum, "ro")
-                current_month = str(date.month)
+                current_month = (date.month)
                 sum = 0
             sum += dict_rain_data[n]
             

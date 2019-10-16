@@ -7,7 +7,7 @@ ARI Formula
 The score is computed by multiplying the number of characters divided by the number of words by 4.17, adding the number of words divided by the number of sentences multiplied by 0.5, and subtracting 21.43. If the result is a decimal, always round up. Scores greater than 14 should be presented as having the same age and grade level as scores of 14.
 '''
 import string
-book= ("C:\\Users\\vanbinhluong\\Desktop\\PythonFullStack\\lab21_count_words\\Wealth_Against_Commonwealth.txt")
+book= ("C:\\Users\\vanbinhluong\\Desktop\\PythonFullStack\\lab22_Compute_Automated_Readability_Index\\Wealth_Against_Commonwealth.txt")
 
 ari_scale = {
      1: {'ages':   '5-6', 'grade_level': 'Kindergarten'},
