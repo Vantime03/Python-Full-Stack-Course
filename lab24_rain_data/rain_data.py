@@ -1,8 +1,10 @@
 '''
-lab24: rain data | version 2
+lab24: rain data | version 3
 '''
 import datetime
 import string
+import matplotlib.pyplot as plt
+
 rain_data = "C:\\Users\\vanbinhluong\\Desktop\\PythonFullStack\\lab24_rain_data\\mt_tabor.rain.txt"
 dict_rain_data = {}
 
@@ -67,6 +69,23 @@ def display_result(mean, count, variance, one_day_high, date, max_rain_by_year, 
     print(f"On {date}, it has the most rain, {one_day_high}.")
     print(f"Year {year} has the highest rain fall of {max_rain_by_year}.")
 
+def plot():
+    user_input = input("Enter the year that you would like to see a plot of rainfall by month (e.g. 1998): ")
+    sum = 0
+    current_month = ""
+    
+    for n in dict_rain_data: 
+        date = datetime.datetime.strptime(n, '%d-%b-%Y')
+        if str(date.year) == user_input:
+            if str(date.month) != current_month:
+                plt.plot(current_month, sum, "ro")
+                current_month = str(date.month)
+                sum = 0
+            sum += dict_rain_data[n]
+            
+
+    plt.axis([0, 15, 0, 45])
+    plt.show()
 
 def main():
     parse_data()
@@ -75,6 +94,7 @@ def main():
     one_day_high, date = most_rain_in_one_day()
     max_rain_by_year, year = calculate_year_with_most_rain()
     display_result(mean, count, variance, one_day_high, date, max_rain_by_year, year)
+    plot()
 
 
 main()
