@@ -8,6 +8,8 @@ check_withdrawal(amount) returns true if the withdrawn amount won't put the acco
 withdraw(amount) withdraws the amount from the account and returns it
 calc_interest() returns the amount of interest calculated on the account
 '''
+trasaction_list = []
+
 class ATM:
     def __init__(self, name, balance, interest):
         self.name = name
@@ -17,79 +19,77 @@ class ATM:
     def check_balance(self):
         return self.balance
        
-    def deposit(self, deposit_amount):
+    def deposit(self):
+        deposit_amount = int(input("how much would you like to deposit?\n"))
         self.balance = self.balance + deposit_amount
         return self.balance
     
-    def check_withdrawal(self, withdraw_amt):
-        if self.balance < withdraw_amt:
-            return True
+    def check_withdrawal(self):
+        withdraw_amount = int(input("how much would you like to withdraw?\n"))
+        if self.balance >= withdraw_amount:
+            self.withdraw(withdraw_amount)
+            return withdraw_amount
         else: 
-            return False
+            print(f"Insufficient Fund! Your existing balance is {self.balance}")
+            return 0
 
-    def withdraw(self, withdraw_amt):
-        if self.balance > withdraw_amt:
-            self.balance = self.balance - withdraw_amt
-            return self.balance
-        else:
-            print("This will bring a negative balance !!!")
+    def withdraw(self, withdraw_amount):
+        self.balance = self.balance - withdraw_amount
+        return self.balance
 
     def calc_interest(self):
         return self.balance * self.interest
 
+def get_name():
+    print("Welcome to ATM Demo!\n")
+    user_name = input("What is the name for the ATM account?")
+    return user_name
+
+def user_action(p1):
+    inquery_again = "yes"
+    inquery = (input("what would you like to do (deposit, withdraw, check balance, history, or exit)?\n")).lower()
+    
+    while inquery_again in ["yes", "y"]:        
+        if inquery == "deposit":
+            deposit_amount = p1.deposit()
+            trasaction_list.append(f'{p1.name} deposited {deposit_amount}.')
+        
+        elif inquery == "withdraw":
+            withdraw_amount = p1.check_withdrawal()
+            if withdraw_amount == 0:
+                trasaction_list.append(f'{p1.name} withdrew {withdraw_amount}. This can be due to insufficient fund!')
+            else:
+                trasaction_list.append(f'{p1.name} withdrew {withdraw_amount}.')
+        
+        elif inquery == "check balance":
+            balance = p1.check_balance()
+            print(f"The current balance is ${balance}.\n")
+            trasaction_list.append(f'{p1.name} checked balance.')
+
+        elif inquery == "history":
+            trasaction_list.append(f'{p1.name} checked history.')
+            print_transaction()
+        
+        elif inquery == "exit":
+            exit()
+
+        else:
+            print("That is an invalid entry! Please try again!\n")
+
+        inquery = (input("what would you like to do next (deposit, withdraw, check balance, history, or exit)?\n")).lower()
+          
+def print_transaction():
+    for n in trasaction_list:
+        print(n)
+
 def main():
-    p1 = ATM('Van', 100, .001)
-    p2 = ATM('Justin', 1000, .001)
-    
-    #check balance
-    print(f'The balance for {p1.name}\'s account is {p1.check_balance()}')
-    print(f'The balance for {p2.name}\'s account is {p2.check_balance()}')
-
-    #deposit $100 for each account
-    deposit_amount = 100
-    print(f'After deposited ${deposit_amount}, the balance for {p1.name}\'s account is {p1.deposit(deposit_amount)}')
-    print(f'After deposited ${deposit_amount}, the balance for {p2.name}\'s account is {p2.deposit(deposit_amount)}')
-    print(p1.balance)
-
-    #check withdrawal
-    withdraw_amt = 300
-    print(f'If {p1.name} withdraws ${withdraw_amt}, it is {p1.check_withdrawal(withdraw_amt)} that the balance will be negative.')
-    print(f'If {p2.name} withdraws ${withdraw_amt}, it is {p2.check_withdrawal(withdraw_amt)} that the balance will be negative.')
-
-    #withdraw amount 
-    withdraw_amt = 150
-    print(f'After {p1.name} withdrew ${withdraw_amt}, the balance is {p1.withdraw(withdraw_amt)}')
-    print(f'After {p2.name} withdrew ${withdraw_amt}, the balance is {p2.withdraw(withdraw_amt)}')
-
-    #calculate interest amount
-    print(f'With the annual interest rate of {p1.interest} and a balance of ${p1.balance}, the total interest amount is ${round(p1.calc_interest(), 2)}')
-    print(f'With the annual interest rate of {p2.interest} and a balance of ${p2.balance}, the total interest amount is ${round(p2.calc_interest(), 2)}')
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # user_account = {}
-    # print("Welcome to ATM demo!\n")
-    # user_name = input("Enter your name to create an account: ")
-    # Is_deposit = (input(f"{user_name}, Your balance is currently $0. Would you like to make a deposit (y/n)? ")).lower()
-    # if Is_deposit in ["y", "yes"]:
-    #     deposit_amount = int(input("Enter the deposit amount: "))
-    #     if deposit_amount > 0:
-    #         account = ATM(user_name, deposit_amount, .001 )
-    #         user_account[account.name] = {"balance": account.balance, "interest": account.interest}
-
-
+    p1 = ATM('', 0, .001)
+    user_name = get_name()
+    p1.name = user_name
+    print(f"Hi {p1.name}, your account is created. Your current balance is ${p1.balance} with the interest rate of {p1.interest * 100}%\n")
+    trasaction_list.append(f'An account called {p1.name} was created.')
+    user_action(p1)
+     
 main()
 
 
