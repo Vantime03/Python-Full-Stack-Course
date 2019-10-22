@@ -31,34 +31,28 @@ games_tie = 0
 
 
 game_result = {
-"rockrock": "You chose Rock. Computer chose Rock. It's a tie!",
-"rockpaper": "You chose Rock. Computer chose Paper. you lose!",
 "rockscissor": "You chose rock. Computer chose scissor. You win!",
 "paperrock": "You chose paper. Computer chose rock. You win!",
-"paperpaper": "You chose paper. Computer chose paper. It's a tie!",
-"paperscissor": "You chose paper. Computer chose scissor. You lose!",
-"scissorrock": "You chose scissor. Computer chose rock. You lose!",
 "scissorpaper": "You chose scissor. Computer chose paper. You win!",
-"scissorscissor": "You chose scissor. Computer chose scissor. It's a tie"
 } #this is the dictionary list for game result
 
-def statistic(user, computer, total, win, lose, tie):
+def main():
+    choice = ['rock', 'paper', 'scissor']
+    user_input = input("\nPlease enter your choice (rock, paper, scissor):  ").lower()
+    computer_choice = random.choice(choice)
 
-    result = user + computer
-    #test print(total_games)
-    total  = total + 1
-    if result == "rockscissor" or result == "paperrock" or result == "scissorpaper":
-        win = win + 1
-    if result == "rockpaper" or result == "paperscissor" or result == "scissorrock":
-        lose = lose + 1
-    if result == "rockrock" or result == "paperpaper" or result == "scissorscissor":
-        tie = tie + 1
-    print(f"\n***Statistic***\nTotal gameplay: {total}\nYour winning ratio: {round((win/total*100),2)}%\nYour losing ratio: {round((lose/total*100),2)}%\nTie ratio: {round((tie/total*100),2)}%")
-    str_return = [total, win, lose, tie]
-    #print(str_return)
-    return str_return
+    if user_input == computer_choice:
+        print(f"You chose {user_input} and computer chose {computer_choice}. It's a tie!")
+    elif (user_input+computer_choice) == "rockscissor" or (user_input+computer_choice) == "paperrock" or (user_input+computer_choice) == "scissorpaper":
+        print(f"{game_result[user_input+computer_choice]}")
+    else:
+        print(f"You chose {user_input} and computer chose {computer_choice}. You lost!")
+        
 
 
+
+main()
+'''
 def game_begin():
 
     global total_games
@@ -91,3 +85,4 @@ def game_begin():
 #Game greeting
 print("Hello! Welcome to Rock-Paper-Scissor with Statistic")
 game_begin()
+'''
