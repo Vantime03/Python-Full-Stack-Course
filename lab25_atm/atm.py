@@ -40,11 +40,13 @@ class ATM:
     def calc_interest(self):
         return self.balance * self.interest
 
+#get user account name
 def get_name():
     print("Welcome to ATM Demo!\n")
     user_name = input("What is the name for the ATM account?")
     return user_name
 
+#take user action to call the method from class
 def user_action(p1):
     inquery_again = "yes"
     inquery = (input("what would you like to do (deposit, withdraw, check balance, history, or exit)?\n")).lower()
@@ -77,15 +79,16 @@ def user_action(p1):
             print("That is an invalid entry! Please try again!\n")
 
         inquery = (input("what would you like to do next (deposit, withdraw, check balance, history, or exit)?\n")).lower()
-          
+
+#print transaction history 
 def print_transaction():
     for n in trasaction_list:
         print(n)
 
 def main():
-    p1 = ATM('', 0, .001)
-    user_name = get_name()
-    p1.name = user_name
+    p1 = ATM('', 0, .001) #object name
+    user_name = get_name() #get the name for the account
+    p1.name = user_name # assigned p1.name
     print(f"Hi {p1.name}, your account is created. Your current balance is ${p1.balance} with the interest rate of {p1.interest * 100}%\n")
     trasaction_list.append(f'An account called {p1.name} was created.')
     user_action(p1)
