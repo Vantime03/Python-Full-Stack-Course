@@ -47,11 +47,8 @@ def main():
         print(f"{game_result[user_input+computer_choice]}")
     else:
         print(f"You chose {user_input} and computer chose {computer_choice}. You lost!")
-        
-
-
-
 main()
+
 '''
 def game_begin():
 
