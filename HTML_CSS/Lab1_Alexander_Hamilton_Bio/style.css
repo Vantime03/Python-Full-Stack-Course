@@ -14,6 +14,7 @@ h1 {
 
 h2 {
     text-align: center;
+    color: #263409;
 }
 
 div {
@@ -30,6 +31,9 @@ body {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+    /* background-image: url("AlexanderHamilton_currency_background.jpg") ; */
+    background: #d9ecd0;
+    color: black;
 }
 
 html, body {
@@ -39,4 +43,30 @@ html, body {
 html {
     display: table;
     width: 100%;
+}
+
+a {
+    color: blue;
+}
+
+.quote {
+    color: #375F1B;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-weight: 900;
+}
+
+.intro {
+    color: #341509;
+}
+
+.location {
+    color: #B88914;
+}
+
+.ul {
+    margin: 40%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    text-align: left;
 }

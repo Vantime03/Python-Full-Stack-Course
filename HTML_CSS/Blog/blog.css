@@ -1,0 +1,28 @@
+html, body {
+    box-sizing: border-box;
+    background-color: #FDE281 ;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 25px;
+}
+
+.card  {
+    margin: 10px;
+}
+
+.welcome {
+    color: #FB9902;
+    text-align: center;
+    background-color: rgb(251, 151, 2);
+    background-image: url('https://as1.ftcdn.net/jpg/00/01/60/50/500_F_1605013_tE6CDjSGm9bzibTU0sldVA2me2Gm9O.jpg');
+}
+
+.cardTitle {
+    color: #342309;
+}
+
+
