@@ -62,10 +62,17 @@ h2 {
 
 .lead {
     color: black;
-    font-weight: bold;
+    font-weight: normal;
     text-shadow: 1px 1px 2px white;
 
 }
+
+/* .mainpage {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-weight: normal;
+    
+} */
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
