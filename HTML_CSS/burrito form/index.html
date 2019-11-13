@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burito Shop</title>
+</head>
+
+<body>
+    <div>
+        <h1 style="text-align: center;">Welcome to Burrito Shop!!!</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3>Follow these simple steps to get your burrito fix:</h3>
+                <ol>
+                    <h6>
+                        <li>Pick your wrap!</li>
+                    </h6>
+                    <h6>
+                        <li>Choose your rice and bean!</li>
+                    </h6>
+                    <h6>
+                        <li>Select a protein!</li>
+                    </h6>
+                    <h6>
+                        <li>Choose additional ingredients!!</li>
+                    </h6>
+                    <h6>
+                        <li>Fill out your info and payment</li>
+                    </h6>
+                </ol><br><br>
+            </div>
+
+
+            <div>
+                <h3 style="text-align: center;">Build Your Burrito</h3>
+            </div>
+
+            <div class="col s2">
+                <form action="Tortilla">
+                    <fieldset>
+                        <h5><u>1. Tortilla</u></h5>
+                        <p>
+                            <label>
+                                <input name="group_tortilla" type="radio" checked />
+                                <span>White Flour</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_tortilla" type="radio" />
+                                <span>Wheat Flour</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_tortilla" type="radio" />
+                                <span>Spinach</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_tortilla" type="radio" />
+                                <span>Corn</span>
+                            </label>
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col s2">
+                <form action="Rice">
+                    <fieldset>
+                        <h5><u>2. Rice</u></h5>
+                        <p>
+                            <label>
+                                <input name="group_rice" type="radio" checked />
+                                <span>White Rice</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_rice" type="radio" />
+                                <span>Brown Rice</span>
+                            </label>
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col s2">
+                <form action="Bean">
+                    <fieldset>
+                        <h5><u>3. Bean</u></h5>
+                        <p>
+                            <label>
+                                <input name="group_bean" type="radio" checked />
+                                <span>Black Bean</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_bean" type="radio" />
+                                <span>Pinto Bean</span>
+                            </label>
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col s2">
+                <form action="Protein">
+                    <fieldset>
+                        <h5><u>4. Protein</u></h5>
+                        <p>
+                            <label>
+                                <input name="group_protein" type="radio" checked />
+                                <span>Carnitas</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_protein" type="radio" />
+                                <span>Chicken</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_protein" type="radio" />
+                                <span> Sofritas</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input name="group_protein" type="radio" />
+                                <span>none</span>
+                            </label>
+                        </p>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col s3">
+                <fieldset>
+                    <h5><u>5. Additional</u></h5>
+
+                    <form action="additional-ingredient">
+                        <p>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Cheese</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" />
+                                <span>Sour Cream</span>
+                            </label>
+                        </p>
+                </fieldset>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <h3 style="text-align: center;">Customer Info</h3>
+        </div>
+
+        <div class="row">
+            <fieldset>
+                <div class="input-field col s3">
+                    <input id="first_name" type="text" class="validate" required>
+                    <label class="active" for="first_name">Customer's First Name</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="last_name" type="text" class="validate" required>
+                    <label class="active" for="last_name">Customer's Last Name</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="phone" type="text" class="validate" required>
+                    <label class="active" for="phone">Customer's Phone Number</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="email" type="text" class="validate" required>
+                    <label class="active" for="email">Customer's Email Address</label>
+                </div>
+            </fieldset>
+        </div>
+
+        <div>
+            <h3 style="text-align: center;">Payment Info</h3>
+        </div>
+
+        <div class="row">
+            <fieldset>
+                <div class="input-field col s3">
+                    <input id="full_name" type="text" class="validate" required>
+                    <label class="active" for="full_name">Full Name On Credit/Debit Card</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="last_name" type="text" class="validate" required>
+                    <label class="active" for="last_name">Customer's Last Name</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="phone" type="text" class="validate" required>
+                    <label class="active" for="phone">Customer's Phone Number</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="email" type="text" class="validate" required>
+                    <label class="active" for="email">Customer's Email Address</label>
+                </div>
+            </fieldset>
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+</html>
