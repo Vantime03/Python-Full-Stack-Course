@@ -29,9 +29,7 @@ body {
 .display-4 {
 	font-size: 3.5rem;
 	font-weight: 500;
-    line-height: 1.2;
-    text-align: left;
-    margin-left: 15px;
+	line-height: 1.2;
 }
 
 .navbar.navbar-1 .navbar-toggler-icon {
@@ -58,36 +56,20 @@ h5 {
 h2 {
     color: black;
     text-align: center;
+
 }
 
-.lead {
+.contact {
     color: black;
-    font-weight: normal;
     text-shadow: 1px 1px 2px white;
-
+    margin-left: 10px;
 }
-
-/* .mainpage {
-    color: white;
-    text-shadow: 1px 1px 2px black;
-    font-weight: normal;
-    
-} */
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
   [class*="col-"] {
     width: 100%;
   } 
-
-  .col-7 {
-      width: 100%;
-  }
-
-  .col-5 {
-      width: 100%;
-  }
-    
     }
 
 
