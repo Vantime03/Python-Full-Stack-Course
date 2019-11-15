@@ -9,7 +9,22 @@ function validateFirstName() {
         document.getElementById("demo").innerHTML = "valid name!";
     } else {
         document.getElementById("demo").innerHTML = "invalid!";
+        alert("Invalid first name!")
     }
 }
+
+// function 
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.modal');
+//     var instances = M.Modal.init(elems, options);
+//   });
+
+//   // Or with jQuery
+
+//   $(document).ready(function(){
+//     $('.modal').modal();
+//   });
+        
 
 
