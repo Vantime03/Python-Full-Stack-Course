@@ -183,7 +183,7 @@
             <h3 style="text-align: center;">Customer Info</h3>
         </div>
 
-        <form action="">
+        <form action="http://localhost:8000" method="POST">
         
             <div class="row">
                 <fieldset>
@@ -199,10 +199,9 @@
                     </div>
 
                     <div class="input-field col s3">
-                        <input id="name" type="text" class="validate" pattern="[a-zA-Z]+" title="Do not include number and special characters" required>
+                        <input name="name" id="name" type="text" class="validate" pattern="[a-zA-Z ]+" title="Do not include number and special characters" required>
                         <label class="active" for="name">Full Name</label>
                          <!-- <input type="name" name="name"> special-->
-
                     </div>
 
                     <div class="input-field col s3">
@@ -213,15 +212,66 @@
                     
                     
                     <div class="input-field col s3">
-                        <input name="name" id="phone" type="text" name="phone" class="validate" pattern="[0-9]{10}" title="10 digits phone number without dashes(e.g. 1234567890)" required>
+                        <input id="phone" type="text" name="phone" class="validate" pattern="[0-9]{10}" title="10 digits phone number without dashes(e.g. 1234567890)" required>
                         <label class="active" for="phone">Phone Number</label>
                         <!-- <input type="phone" name="phone"> special--> 
+                    </div>
+
+
+                    <div class="input-field col s3">
+                        <input name="dob" id="dob" type="date" class="validate" title="" required>
+                        <label class="active" for="dob">Date of Birth</label>
+                        <!-- <input type="dob" name="dob"> special-->
+                    </div>
+
+                    <div class="input-field col s3">
+                        <input name="ssn" id="ssn" type="password" class="validate" inputmode="numeric" minlength="9" maxlength="12"
+                        pattern="(?!000)([0-6]\d{2}|7([0-6]\d|7[012]))([ -])?(?!00)\d\d\3(?!0000)\d{4}"
+                        required autocomplete="off" required> 
+                        <label class="active" for="dob">SSN</label>
+                        <!-- <input type="ssn" name="ssn"> special-->
+                    </div>
+
+                    <div class="input-field col s3">
+                            <input id="phone" type="text" name="phone" class="validate" pattern="[0-9]{10}" title="10 digits phone number without dashes(e.g. 1234567890)" required>
+                            <label class="active" for="phone">Phone Number</label>
+                            <!-- <input type="phone" name="phone"> special--> 
+                    </div>
+
+                    <div class="input-field col s3">
+                        <input id="street" type="text" name="street" class="validate">
+                        <label class="active" for="street">Street</label>
+                        <!-- <input type="street" name="street"> special-->
+                    </div>
+
+                    <div class="input-field col s3">
+                        <input id="street" type="text" name="street" class="validate">
+                        <label class="active" for="phone">Street</label>
+                        <!-- <input type="street" name="street"> special-->
+                    </div>
+
+                    <div class="input-field col s3">
+                        <input id="city" type="text" name="city" class="validate">
+                        <label class="active" for="city">City</label>
+                        <!-- <input type="city" name="city"> special-->
+                    </div>
+
+                    <div class="input-field col s3">
+                        <input id="state" type="text" name="state" class="validate">
+                        <label class="active" for="state">State</label>
+                        <!-- <input type="state" name="state"> special-->
+                    </div>
+
+                    <div class="input-field col s3">
+                        <input id="zip_code" type="text" name="zip" class="validate" pattern="[0-9]{5}" required>
+                        <label class="active" for="phone">Zip Code</label>
+                        <!-- <input type="zip_code" name="zip_code"> special-->
                     </div>
                 </fieldset>
             </div>
         
         
-            <div>
+            <!-- <div>
                 <h3 style="text-align: center;">Payment Info</h3>
             </div>
         
@@ -264,7 +314,15 @@
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
-            </fieldset>
+            </fieldset> -->
+
+            <div class="row">
+                <button class="btn waves-effect waves-light" type="submit" name="action"
+                    style="justify-content: center;">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+
         </form>
 
 
