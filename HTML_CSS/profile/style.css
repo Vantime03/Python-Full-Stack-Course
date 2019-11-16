@@ -1,7 +1,5 @@
-body {
-    /* background-image: url(https://i.pinimg.com/originals/f0/a9/7c/f0a97ca3a74d6ae77e0d361ed2e074cd.jpg); */
-    /* background-image: url(https://i.pinimg.com/originals/f0/a9/7c/f0a97ca3a74d6ae77e0d361ed2e074cd.jpg); */
-  background: url(photo_by_gdtography.jpg) no-repeat center center fixed; 
+body {    
+    background-image: linear-gradient(to right, white, gray);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

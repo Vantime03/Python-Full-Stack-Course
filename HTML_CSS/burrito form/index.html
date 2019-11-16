@@ -188,20 +188,34 @@
             <div class="row">
                 <fieldset>
                     <div class="input-field col s3">
-                        <input id="first_name" type="text" class="validate" pattern="[A-Za-z]" required>
-                        <label class="active" for="first_name">Customer's First Name</label>
+                        <label class="active" for="first_name">Username</label>
+                        <input id="username" type="text" class="validate" pattern="[a-zA-Z0-9._]{5,15}" title="Username must has 5 to 15 characters exclude special characters except '.' and '_' " name="username" required>
+                        <!-- <input type="username" name="username"> special-->
                     </div>
                     <div class="input-field col s3">
-                        <input id="last_name" type="text" class="validate" required>
-                        <label class="active" for="last_name">Customer's Last Name</label>
+                        <input id="password" name="password" type="password" class="validate" required>
+                        <label class="active" for="password">Password</label>
+                        <!-- <input type="password" name="password"> -->
                     </div>
+
                     <div class="input-field col s3">
-                        <input id="phone" type="text" class="validate" required>
-                        <label class="active" for="phone">Customer's Phone Number</label>
+                        <input id="name" type="text" class="validate" pattern="[a-zA-Z]+" title="Do not include number and special characters" required>
+                        <label class="active" for="name">Full Name</label>
+                         <!-- <input type="name" name="name"> special-->
+
                     </div>
+
                     <div class="input-field col s3">
-                        <input id="email" type="text" class="validate" required>
-                        <label class="active" for="email">Customer's Email Address</label>
+                        <input id="email" type="email" name="email" class="validate" required>
+                        <label class="active" for="email">Email Address</label>
+                        <!-- <input type="email" name="email"> -->
+                    </div>
+                    
+                    
+                    <div class="input-field col s3">
+                        <input name="name" id="phone" type="text" name="phone" class="validate" pattern="[0-9]{10}" title="10 digits phone number without dashes(e.g. 1234567890)" required>
+                        <label class="active" for="phone">Phone Number</label>
+                        <!-- <input type="phone" name="phone"> special--> 
                     </div>
                 </fieldset>
             </div>
@@ -214,20 +228,20 @@
             <fieldset>
                 <div class="row">
                     <div class="input-field col s3">
-                        <input id="full_name" type="text" class="validate" required>
+                        <input id="full_name" type="text" class="validate" pattern="[a-zA-Z]+" title="Do not include number and special characters" required>
                         <label class="active" for="full_name">Full Name On Credit/Debit Card</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="zip_code" type="text" class="validate" required>
-                        <label class="active" for="zip_code">Zip Code</label>
+                        <input id="zip_code" type="text" class="validate" pattern="[0-9]{5}" required>
+                        <label class="active" for="zip_code">Cardholder billing's Zip Code</label>
                     </div>
                     <div class="input-field col s3">
                         <input id="phone" type="text" class="validate" required>
-                        <label class="active" for="phone">Customer's Phone Number</label>
+                        <label class="active" for="phone">Cardholder's Phone Number</label>
                     </div>
                     <div class="input-field col s3">
-                        <input id="email" type="text" class="validate" required>
-                        <label class="active" for="email">Customer's Email Address</label>
+                        <input id="email" type="email" class="validate" required>
+                        <label class="active" for="email">Cardholder's Email Address</label>
                     </div>
                 </div>
                 <div class="row">
@@ -236,7 +250,7 @@
                         <label class="active" for="full_name">Full Name On Credit/Debit Card</label>
                     </div>
                     <div class="input-field col s3">
-                        <input type="text" class="datepicker">
+                        <input type="month" class="datepicker">
                     </div>
                     <div class="input-field col s3">
                         <input id="phone" type="text" class="validate" required>
@@ -257,20 +271,8 @@
         <div><p id="demo">hello</p></div>
 
         
-
-  <!-- Modal Trigger -->
-  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
-
-  <!-- Modal Structure -->
-  <!-- <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div> -->
+        
+ 
 
         
 
