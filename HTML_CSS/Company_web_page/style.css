@@ -1,0 +1,67 @@
+/* stylesheet for Company_Web_page lab */
+.container {
+    display: flex;;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 25px;
+}
+
+.bg-light {
+	background-color: #D4F7EC !important;
+}
+
+.logo {
+    padding: 5px;
+    font-size: 500px;
+}
+
+
+.jumbotron {
+	/* margin-bottom: 2rem; */
+	background-color: #448D784F;
+	/* border-radius: .3rem; */
+}
+
+
+body { 
+    background-color: #D4F7EC;
+   
+    /* background: url(https://images.pexels.com/photos/235922/pexels-photo-235922.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-shadow: white 0px 0px 10px; */
+  }
+
+  .bodytext {
+    color: #090934;
+  }
+
+  h5 .h5 {
+    color: #2E2FE3;
+  }
+
+  .contact-us {
+    margin: 25px;
+    color: #090934;;
+  }
+
+  .forum.table > tbody > tr > td {
+    vertical-align: middle;
+}
+
+.forum .fa {
+    width: 1em;
+    text-align: center;
+}
+
+.forum.table th.cell-stat {
+    width: 6em;
+}
+
+.forum.table th.cell-stat-2x {
+    width: 14em;
+}
+
+

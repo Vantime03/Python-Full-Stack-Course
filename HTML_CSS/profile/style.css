@@ -1,0 +1,74 @@
+body {    
+    background-image: linear-gradient(to right, white, gray);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* text-shadow: white 0px 0px 10px; */
+}
+
+/* Jumbotron Name Text changed to white */
+.display-4 {
+    color: white;
+}
+/*Jumbotron paragraph text change to white */
+.lead {
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 25px;
+}
+
+/*Jumbotron Name*/
+.display-4 {
+	font-size: 3.5rem;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.navbar.navbar-1 .navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger6.svg?color=000');
+}
+
+.navbar-brand {
+    color: black;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px white;
+}
+
+h5 {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px white;
+}
+
+.nav-link:hover {
+    background-color: gray;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+
+}
+
+.contact {
+    color: black;
+    text-shadow: 1px 1px 2px white;
+    margin-left: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+  [class*="col-"] {
+    width: 100%;
+  } 
+    }
+
+
+
