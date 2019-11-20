@@ -63,7 +63,7 @@ function num_matches (winning, ticket) {
 }
 
 function main() {
-    let wallet = 100000;
+    let wallet = 200000;
     const original_wallet = wallet;
     let net_winning = 0;
     let round = 0;
@@ -104,7 +104,7 @@ function main() {
         // console.log("Round " + round +  ": $" + netWinCurrentPick);     
     }
     
-    const winning_ratio = (net_winning/original_wallet) * 100;
+    const winning_ratio = ((net_winning - original_wallet)/original_wallet) * 100;
 
     console.log("winning ratio: " + Math.round(winning_ratio) + "%");
     console.log("Net win: $" + net_winning);
