@@ -1,0 +1,10 @@
+.container {
+    display: flex;;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 25px;
+}
+
+.col-12 {
+    text-align: center;
+}
