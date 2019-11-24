@@ -15,4 +15,4 @@ This site will have the following functional requirments:
 . Transaction database table that shows all historical transactions
 . User database table that contain user's profile information
 
-![](Screen Shot 2019-11-24 at 2.24.44 PM.png)
+![sample](sample.png)
