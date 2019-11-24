@@ -1,0 +1,8 @@
+[users]
+id
+fullname
+username
+
+[tweets]
+id
+user_id
