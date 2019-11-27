@@ -14,12 +14,18 @@ What's the benefit of peer-to-peer tool lending program? Here are the benefits:
 The scope of this project will consist of the following functional requirments: 
 
 1. Allow new users (lenders or borrowers) to register accounts. 
-2. Allow user to Logon and Logoff. 
+2. Allow users (borrowers or lenders) to Logon and Logoff. 
 3. Allow borrowers to search equipment from the equipment database for renting. 
+4. Allow borrowers to request an equipment for rent. 
 4. Allow lenders to upload equipment to the equipment database for leasing. Provide suggested leasing price based on the existing market
+5. Allow lenders to accept the rental request. 
 5. Create Equipment database table that shows a list of equipment for rent.
 6. Create Transaction database table that shows all current and historical transactions.
 7. Create User database table that contain user's profile information.
+
+### Data model
+
+
 
 <!-- ![sample](sample.png) -->
 
