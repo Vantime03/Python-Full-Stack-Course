@@ -1,6 +1,13 @@
-(function() {
-	Const url = 'https://jsonplaceholder.typicode.com/todos/1';
+function get_api () {
+	const url = 'https://favqs.com/api/qotd'
 	axios.get(url)
-	.then(requst => console.log(request.data))
+	.then(function (request) {
+        let quote = request.data.quote.body
+        document.getElementById("quote").innerHTML = quote 
+    })
 	.catch(error => console.log(error))
-})()
+}
+
+get_api()
+
+
