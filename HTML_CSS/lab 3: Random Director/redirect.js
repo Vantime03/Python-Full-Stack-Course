@@ -28,11 +28,6 @@ let direct_to_news = () => {
 }
 
 
-
-
-
-
-
 document.querySelector(".news_div").addEventListener('click', () => {
     setTimeout(direct_to_news, 5000); 
 })
@@ -40,3 +35,5 @@ document.querySelector(".news_div").addEventListener('click', () => {
 document.querySelector(".social_media_div").addEventListener("click", () => {
     direct_to_social_media();
 })
+
+
