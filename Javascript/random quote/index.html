@@ -4,18 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>random quote</title>
 </head>
 <body>
-    <h3>Quote of the Day</h3>
-    <div id="quote"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col s12"><h1>Welcome to famous quote!</h></div>
+            <div class="col s12" id="filter_list"></div><br><br><br><br>
+            <div class="col s3"></div><div class="col s6"><input type="text" id="tag_textbox" class="inputText" placeholder="type a tag keyword from above"></div><div class="col s3"></div>
+            <div class="col s12" style="display: flex; justify-content: center;"><button id="search_by_tag" class="searchButton">Search</button></div>
+            <div class="col s12" id="result"></div>
     
-
+    
+    
+        </div>
     
     
     
+    </div>
+    
+    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="secret.js"></script>
     <script src="random_quote.js"></script>
-
 </body>
 </html>

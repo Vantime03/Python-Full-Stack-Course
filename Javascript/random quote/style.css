@@ -1,0 +1,9 @@
+.inputText {
+    text-align: center;
+}
+
+.searchButton {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
