@@ -1,6 +1,6 @@
 # Peer-to-Peer Tool Lending
 
-### Project Overview
+## Project Overview
 
 The purpose of this project is to create a peer-to-peer tool lending site. This site will allow users to lend their tools to others at a very low cost.
 
@@ -9,7 +9,7 @@ What's the benefit of peer-to-peer tool lending program? Here are the benefits:
     (2) Tool owners can make extra money from renting out their tools. 
     (3) You can still lend tools to your friends or family with this system. With this system, you have them accountable for what they're borrowing. 
 
-### Project Scope
+## Project Scope
 
 The scope of this project will consist of the following functional requirments: 
 
@@ -23,11 +23,21 @@ The scope of this project will consist of the following functional requirments:
 6. Create Transaction database table that shows all current and historical transactions.
 7. Create User database table that contain user's profile information.
 
-### Data model
+## Data model
 
+The data model diagram for this project consist of 4 tables: 
 
+- Borrower: contains  borrowers' information
+- Lender: contains lenders' information
+- Equipment: contains tools' information that associate with owner/lender and borrower
+- Transaction: contains borrower, lender, and equipment information on each transaction
 
-<!-- ![sample](sample.png) -->
+See the illustrate below for more details. 
+
+![sample](screenshot_for_ERD.png)
+
+## Schedule
+
 
 
 
