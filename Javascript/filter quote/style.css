@@ -1,0 +1,24 @@
+.inputText {
+    text-align: left;
+}
+
+/* .ilike-blue-container {
+    background: #2196f3 .blue, .lighten-4
+} */
+
+body {
+    background: #b2dfdb;
+}
+
+.brand-logo {
+    margin-left:  25px;
+}
+
+p {
+    text-align: center;
+}
+
+.card-title {
+    text-align: center;
+}
+

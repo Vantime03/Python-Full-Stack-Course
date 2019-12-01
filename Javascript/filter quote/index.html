@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+    </script>
+    <title>Famous quote</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper teal darken-1">
+            <a href="#!" class="brand-logo">Famous Quotes</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <br><br><br><br>
+
+            <div class="row">
+                <div class="col s12 m12">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Quote of The Day</span>
+                            <p id="p1"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- search textbox -->
+            <div class="input-field col s6">
+                <input type="text" id="keyword" class="inputText">
+                <label>Search Keywords</label>
+            </div>
+
+            <!-- combo dropdown box -->
+            <div class="input-field col s4">
+                <select id="combo_option">
+                    <option value="" disabled selected>Filter By</option>
+                    <option value="Tag">Tag</option>
+                    <option value="Author">Author</option>
+                </select>
+            </div>
+
+            <!-- search button -->
+            <div class="col s2" style="text-align: right;">
+                <a class="waves-effect waves-light btn-large teal darken-1" id="search">Search</a>
+            </div>
+
+            <div class="col s12" id="result" style="display: none;" >
+
+                <div class="row">
+                    <div class="col s12 m12">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title" id="filter_by"></span>
+                                <p id="p2"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- Compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="secret.js"></script>
+            <script src="filter_quote.js"></script>
+        </div>
+
+</body>
+
+</html>
