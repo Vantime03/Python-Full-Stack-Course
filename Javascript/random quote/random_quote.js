@@ -16,14 +16,16 @@ function get_api () {
     // })
     .then(function (request) {
         console.log(request.data)
-        console.log(request.data.quotes[3].tags[0])
+        console.log(request.data.quotes[3].author)
         let tag = []
         let quote = []
         for (i=0; i < (request.data.quotes.length); i++){
             // tag.push(request.data.quotes[i].tags[0])
             let len = (request.data.quotes[i].tags).length
             for (a=0; a<len; a++){
-                quote.push(request.data.quotes[i].body)
+                let body = request.data.quotes[i].body
+                let author = request.data.quotes[i].author
+                quote.push([body, author])
                 let Is_tag_in_array = tag.includes(request.data.quotes[i].tags[a])
                 if (Is_tag_in_array == false) {
                     tag.push(request.data.quotes[i].tags[a])
@@ -53,10 +55,11 @@ function search_quote() {
             let n = Quote[i].includes(search_value)
             if (n == true) {
                 if (arr.includes(Quote[i]) == false){
-                    arr.push(Quote[i])
+                    arr.push([Quote[i][0], Quote[i][1]])
                 }
             }
         }
+        console.log(arr);
     }
     for (i=0;i<arr.length;i++){
         result += arr[i] + "<br><br>"
