@@ -1,0 +1,13 @@
+.nav-wrapper {
+    padding-left: 25px;
+}
+
+body {
+    background-color: #e8eaf6;
+}
+
+#mapid { 
+    height: 400px; 
+    margin-top: 50px;
+}
+
