@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Weather By Zip Code</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper teal darken-1">
+            <a href="#!" class="brand-logo">Weather By Zip Code</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <br><br><br><br>
+
+
+            <form class="col s12">
+                <div class="row">
+
+                    <!-- zipcode field -->
+                    <div class="input-field col s4">
+                        <input id="zipcode" type="text" class="validate" value="">
+                        <label for="zipcode">Zip Code</label>
+                        <!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
+                    </div>
+                    
+                    <div class="input-field col s8">
+                        <a class="waves-effect waves-light btn-large teal darken-1" id="search">Search</a>
+                        <!-- <i class="material-icons right">send</i> -->
+                    </div>
+
+                    <div class="col s4">
+                        <h6 id="currentTemperature"></h6>
+                        <h6 id="description"></h6>
+                        <h6 id="windSpeed"></h6>
+
+
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="secret.js"></script>
+    <script src="WeatherAPI.js"></script>
+</body>
+
+</html>

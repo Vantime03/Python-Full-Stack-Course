@@ -43,6 +43,7 @@ function quote_of_the_day () {
 
     axios.get(url)
     .then (function (request) {
+        console.log(request.data);
         let result = '\"' + request.data.quote.body + '\" ~ ' + request.data.quote.author
         document.getElementById("p1").innerHTML = result
     })
