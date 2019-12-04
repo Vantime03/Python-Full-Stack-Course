@@ -36,7 +36,7 @@ The data model diagram for this project consist of 4 tables:
 
 See the illustrate below for more details. 
 
-![sample](screenshot_for_ERD.png)
+![ERD Screenshot](screenshot_for_ERD.png)
 
 ## Schedule
 
