@@ -1,19 +1,20 @@
 // allow user to click send email
 
+
 function send_mail(){
     const nodemailer = require('nodemailer');
 
-    var transporter = createTransport({
-        service: 'gmail',
+    var transporter = nodemailer.createTransport({
+        service: 'hotmail',
         auth: {
-            user: 'P2PToolLending@gmail.com',
-            pass: 'Z6srur92XUYHckA'
+            user: 'van.b.luong@hotmail.com',
+            pass: ``
         }
     })
 
     var mailOptions = {
-        from: 'P2PToolLending@gmail.com',
-        to: 'van.b.luong@hotmail.com',
+        from: 'van.b.luong@hotmail.com',
+        to: 'p2ptoollending@gmail.com',
         subject: 'test email',
         text: 'this is a test'
     }
