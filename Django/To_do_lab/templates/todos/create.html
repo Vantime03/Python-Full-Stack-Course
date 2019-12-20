@@ -1,0 +1,21 @@
+{% extends 'todos/base.html'%}
+
+{% block content %}
+    <form action="{% url 'create' %}" method="POST">
+        {% csrf_token %}
+        <p>Task name: <input type="text" name="title"></p>
+        <p>Text: <input type="text" name="text"></p>
+        <p>status:
+            <select name="status">
+                <option value="True">Complete</option>
+                <option value="False">Incomplete</option>
+            </select>
+        </p>
+        <p>created at: <input type="date" name="created_at" id=""></p>
+        <p>completed at: <input type="date" name="completed_at" id=""></p>
+        <p>task_duration: <input type="date" name="task_duration" id=""></p>
+        <button type="submit">Submit</button>
+    </form>
+
+    
+    {% endblock%}

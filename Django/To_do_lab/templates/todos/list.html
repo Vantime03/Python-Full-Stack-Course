@@ -4,9 +4,12 @@
     {% for task in Tasks%}
         <ul>
             <li>
-                <a href="">{{ task.title }}</a>
+                <a href="/list/{{ task.id }}">{{ task.title }}</a>
                 <p>{{ task.text }}</p>            
             </li>
-        </ul>        
+        </ul>
     {% endfor%}
+
+    <a href="todos/create.html">Add New Task</a>
+
 {% endblock%}
