@@ -1,0 +1,24 @@
+.task-list {
+    text-align: center;
+}
+
+html {
+    background-color: #b2dfdb;
+    text-align: center;
+}
+
+.section-header {
+    text-align: left;
+}
+
+.label {
+    color: black;
+}
+
+/* .task-detail {
+    text-align: center;
+}
+
+.task-title {
+    align-content: center;
+} */

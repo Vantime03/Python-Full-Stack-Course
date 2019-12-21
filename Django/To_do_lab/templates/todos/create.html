@@ -1,21 +1,58 @@
 {% extends 'todos/base.html'%}
 
 {% block content %}
+    <h1>Create A New Task</h1>
     <form action="{% url 'create' %}" method="POST">
         {% csrf_token %}
-        <p>Task name: <input type="text" name="title"></p>
-        <p>Text: <input type="text" name="text"></p>
-        <p>status:
-            <select name="status">
-                <option value="True">Complete</option>
-                <option value="False">Incomplete</option>
-            </select>
-        </p>
-        <p>created at: <input type="date" name="created_at" id=""></p>
-        <p>completed at: <input type="date" name="completed_at" id=""></p>
-        <p>task_duration: <input type="date" name="task_duration" id=""></p>
-        <button type="submit">Submit</button>
+        <div class="row"> 
+            <div class="input-field col s6">
+                <input id="task_name" type="text" class="validate" name="title">
+                <label for="task_name" class="label">Task Name</label>
+            </div>
+
+            <div class="col s1"></div>
+
+            <div class="col s5">
+                <label for="Is_complete">Status</label>
+
+                <select class="browser-default" id="Is_complete" name="status" >
+                    <option value="True">Complete</option>
+                    <option value="False" selected>Incomplete</option>
+                </select>
+            </div>
+
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="task_detail" class="materialize-textarea" name="text"></textarea>
+                        <label for="task_detail">Task Details</label>
+                    </div>
+                </div>
+            </div>
+                    
+            <div class="col s5">
+                <input type="date" name="created_at" id="task_created">
+                <label for="task_created">Created On</label>
+            </div>
+
+            <div class="col s2"></div>
+
+            <div class="col s5">
+                <input type="date" name="completed_at" id="task_completed">
+                <label for="task_completed">Completed On</label>
+            </div>
+
+            <div class="col s12">
+                <button class="waves-effect blue-grey darken-4 btn" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+
     </form>
 
-    
-    {% endblock%}
+    <script>
+        $(document).ready(function() {
+            $('input#input_text, textarea#textarea2').characterCounter();
+          });
+    </script>
+{% endblock%}

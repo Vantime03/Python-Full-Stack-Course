@@ -1,6 +1,118 @@
 {% extends 'todos/base.html'%}
 
 {% block content %}
-    <p>{{ task.title }}</p>
-    <p>{{ task.text }}</p>
+    <h1 class="task-list">Task Detail</h1>
+
+    <div class="row">
+        <div class="input-field col s6">
+            <input id="task_name" type="text" class="validate" name="title" value="{{ task.title }}" disabled>
+            <label for="task_name" class="label">Task</label>
+        </div>
+
+        <div class="col s1"></div>
+
+        <div class="col s5">
+            <label for="Is_complete">Status</label>
+
+            {% if task.status == True %}
+                <select class="browser-default" name="status" id="Is_complete" style="background-color: green;" disabled>
+                    <option value="True">Complete</option>
+                    <option value="False">Incomplete</option>
+                </select>
+            {% else %}
+                <select name="status" id="Is_complete" class="browser-default" style="background-color: orange;" disabled>
+                    <option value="False">Incomplete</option>
+                    <option value="True">Complete</option>
+                </select>            
+            {% endif %}
+        </div>
+
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="text">Details </label> 
+                    <input type="text" name="text" id="" value="{{ task.text }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s5">
+            <input type="date" name="created_at" id="task_created" value="{{ task.created_at|date:'Y-m-d' }}" disabled>
+            <label for="task_created">Created On</label>
+        </div>
+
+        <div class="col s2"></div>
+
+        <div class="col s5">
+            <input type="date" name="completed_at" id="task_completed" value="{{ task.completed_at|date:'Y-m-d' }}" disabled>
+            <label for="task_completed">Completed On</label>
+        </div>
+
+        <div class="col s4"> </div>
+
+        <div class="col s2"> 
+            <a class='waves-effect blue-grey darken-4 btn' href="/update/{{ task.pk }}">Update Task</a>
+        </div>
+
+        <div class="col s2"> 
+            <a class='waves-effect red accent-4 btn' href="/delete/{{ task.pk }}">Delete Task</a>
+        </div>
+        <div class="col s4"> </div>
+
+
+    </div>
+    
+    <!-- <div class="row">
+        <div class="col s12">
+            <h2>{{ task.title }}</h2>
+        </div>
+
+        <div class="col s6 card-panel light-blue accent-1">
+            <h5 class="section-header">Detail:</h5>
+            <p style="text-align: left;">{{ task.text }}</p>
+        </div>
+
+        <div class="col s1"></div>
+
+        <div class="col s12 light-blue accent-1">
+            <p>Status:</p> 
+            <div class="input-field">
+                {% if task.status == True %}
+                <select class="col s12" name="status" id="" disabled>
+                    <option value="complete" disabled selected>Complete</option>
+                </select>       
+                {% else %}
+                    <select class="col s12" name="status" id="" disabled>
+                        <option value="incomplete" disabled selected>Incomplete</option>
+                    </select>         
+                {% endif %}
+            </div>
+            
+        </div>
+        
+        <p>Created on:{{ task.created_at }}</p>
+
+        <p>
+        {% if task.completed_at != null %}
+            Completed on:{{ task.completed_at }}
+        {% else %}
+            Completed on:
+        </p>
+        {% endif %}
+
+        <p>
+            <a href="/update/{{ task.pk }}">Update</a>
+            <a href="/delete/{{ task.pk }}">Delete</a>
+        </p>
+    </div> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
+          });
+    </script>
+
 {% endblock%}
+
+    
