@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from PIL import Image
+
 
 
 class Equipment(models.Model):
@@ -12,6 +14,35 @@ class Equipment(models.Model):
     available = models.BooleanField(default=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
+
+    image1 = models.ImageField(default='default1.jpg', upload_to='equipment_pics')
+    image2 = models.ImageField(default='default1.jpg', upload_to='equipment_pics')
+    image3 = models.ImageField(default='default1.jpg', upload_to='equipment_pics')
+
+    #this will resize the the image to 300px by 300px
+    def save(self):
+        super().save()
+
+        img1 = Image.open(self.image1.path)
+        img2 = Image.open(self.image2.path)
+        img3 = Image.open(self.image3.path)
+
+        if img1.height > 300 or img1.width > 300:
+            output_zize = (300, 300) 
+            img1.thumbnail(output_zize)
+            img1.save(self.image1.path )
+
+        if img2.height > 300 or img2.width > 300:
+            output_zize = (300, 300) 
+            img2.thumbnail(output_zize)
+            img2.save(self.image2.path )
+
+        if img3.height > 300 or img3.width > 300:
+            output_zize = (300, 300) 
+            img3.thumbnail(output_zize)
+            img3.save(self.image3.path )
+
+
 
     # tool_type = 
 
