@@ -4,7 +4,7 @@ from .models import Equipment
 def home(request): 
 
     context = {
-        'equipments': Equipment.objects.all()
+        'equipments': Equipment.objects.filter(available=True)
     }
 
     return render(request, 'landing_page/home.html', context)

@@ -15,9 +15,9 @@ class Equipment(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
-    image1 = models.ImageField(default='default1.jpg', upload_to='equipment_pics')
-    image2 = models.ImageField(default='default1.jpg', upload_to='equipment_pics')
-    image3 = models.ImageField(default='default1.jpg', upload_to='equipment_pics')
+    image1 = models.ImageField(default='default1.png', upload_to='equipment_pics')
+    image2 = models.ImageField(default='default1.png', upload_to='equipment_pics')
+    image3 = models.ImageField(default='default1.png', upload_to='equipment_pics')
 
     #this will resize the the image to 300px by 300px
     def save(self):
