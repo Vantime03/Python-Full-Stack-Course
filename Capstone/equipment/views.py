@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Equipment
 
 def home(request): 
 
     context = {
-        'posts': posts
+        'equipments': Equipment.objects.all()
     }
 
     return render(request, 'landing_page/home.html', context)
