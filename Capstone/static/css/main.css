@@ -90,4 +90,9 @@ a.article-title:hover {
 
 .rent-cost-badge {
   text-align: right;
+  color: white;
 }
+
+/* .badge {
+  color: white;
+}  */

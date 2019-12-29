@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from PIL import Image
+from django.urls import reverse
 
 
 
@@ -42,9 +43,12 @@ class Equipment(models.Model):
             img3.thumbnail(output_zize)
             img3.save(self.image3.path )
 
-
-
     # tool_type = 
 
     def __str__(self):
         return self.tool_name
+
+    def get_absolute_url(self):
+        return reverse('equipment-detail', kwargs={'pk': self.pk})
+
+    

@@ -19,26 +19,24 @@
 
                         <div class="col-6">
                             <h2>
-                                <a class="article-title" href="#">{{ equipment.tool_name }}</a>
+                                <a class="article-title" href="{% url 'equipment-detail' equipment.id %}">{{ equipment.tool_name }}</a>
                             </h2>
                         </div>
 
                         <div class="col-6 rent-cost-badge">
-                            <h4>
                                 <a class="badge badge-success">
                                     ${{ equipment.rent_cost }}/Day | Click to Rent
-                                </a>    
-                            </h4>
+                                </a>   
                         </div>
 
-                        <div>
-                            <p class="article-content col-12 "> <strong>Description:</strong> {{ equipment.description }}</p>
+                        <div class="col-6">
+                            <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
                         </div>
 
 
 
                         <!-- showinging pictures of the equipment will be rented -->
-                        <div id="carouselExampleIndicators{{ equipment.id }}" class="carousel slide" data-ride="carousel">
+                        <div id="carouselExampleIndicators{{ equipment.id }}" class="carousel slide col-6" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators{{ equipment.id }}" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators{{ equipment.id }}" data-slide-to="1"></li>
