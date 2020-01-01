@@ -1,12 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-</head>
-<body>
-    <h1>this is home page</h1>
-</body>
-</html>
+{% extends 'base.html'%}
+
+{% block content %}
+    <h1>This is the Home Page</h1>
+
+    <table>
+        <thead>
+          <tr>
+              <th>ID</th>
+              <th>Code</th>
+              <th>URL</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for url in short_url%}
+                <tr>
+                    <td>{{ url.id }}</td>
+                    <td>
+                        <a href="/direct/{{ url.id }}">
+                            {{ url.code }}
+                        </a>
+                    </td>
+                    <td>{{ url.url }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock%}
+ <!-- <form action="" method="POST">
+        <fieldset>
+            <input type="text" name="URL" id="" placeholder="Enter Long URL to Short">
+            <button type="submit">Short URL</button>
+        </fieldset>
+    </form> -->
+    
