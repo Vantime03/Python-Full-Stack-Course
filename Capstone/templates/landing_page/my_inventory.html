@@ -1,7 +1,7 @@
 {% extends 'landing_page/base.html'%}
 
 {% block content %}
-    {% for equipment in equipments_avail_true%}    
+    {% for equipment in equipments %}    
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ equipment.owner.profile.image.url }}">
             <div class="media-body">

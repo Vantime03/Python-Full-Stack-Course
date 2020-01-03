@@ -1,22 +1,31 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Equipment
+from .models import Equipment, User
 
-#list view option1
-# def home(request): 
-#     context = {
-#         'equipments': Equipment.objects.filter(available=True)
-#     }
-#     return render(request, 'landing_page/home.html', context)
+# list view option1
+def home(request): 
+    
+    context = {
+        'equipments_avail_true': Equipment.objects.filter(available=True),        
+    }
+    return render(request, 'landing_page/home.html', context)
 
-#list view option2
-class EquipmentListView(ListView):
-    model = Equipment
-    template_name = 'landing_page/home.html'
-    context_object_name = 'equipments'
-    queryset = Equipment.objects.filter(available=True)
-    ordering = ['-date_posted']
+# list view option1
+def my_inventory(request): 
+    user_id = request.user.id
+    context = {
+        'equipments': Equipment.objects.filter(owner=user_id),        
+    }
+    return render(request, 'landing_page/my_inventory.html', context)
+
+# #list view option2
+# class EquipmentListView(ListView):
+#     model = Equipment
+#     template_name = 'landing_page/home.html'
+#     context_object_name = 'equipments'
+#     queryset = Equipment.objects.filter(available=True)
+#     ordering = ['-date_posted']
 
 #detail view
 class EquipmentDetailView(DetailView):
