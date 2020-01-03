@@ -29,17 +29,11 @@ def create(request):
         new_url.save()
         return redirect('home')   
 
-def direct(request, id):
+def direct(request, code):
+    print(code)
     try:
-        get_url = Todo.objects.get(pk=id)
+        get_url = Todo.objects.get(code=code)
     except Todo.DoesNotExist:
         raise Http404("short url does not exist")
     return redirect(get_url.url)
 
-
-def detail(request, id):
-    try:
-        task = Todo.objects.get(pk=id)
-    except Todo.DoesNotExist:
-        raise Http404("Task does not exist")
-    return render(request, 'todos/detail.html', {'task': task})

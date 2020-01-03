@@ -3,6 +3,10 @@
 {% block content %}
     <h1>This is the Home Page</h1>
 
+    <div>
+        <a href="/create/">Create a New Short URL</a>
+    </div>
+
     <table>
         <thead>
           <tr>
@@ -17,7 +21,7 @@
                 <tr>
                     <td>{{ url.id }}</td>
                     <td>
-                        <a href="/direct/{{ url.id }}">
+                        <a href="/direct/{{ url.code }}">
                             {{ url.code }}
                         </a>
                     </td>
