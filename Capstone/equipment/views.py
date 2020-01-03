@@ -4,17 +4,18 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Equipment
 
 #list view option1
-def home(request): 
-    context = {
-        'equipments': Equipment.objects.filter(available=True)
-    }
-    return render(request, 'landing_page/home.html', context)
+# def home(request): 
+#     context = {
+#         'equipments': Equipment.objects.filter(available=True)
+#     }
+#     return render(request, 'landing_page/home.html', context)
 
 #list view option2
 class EquipmentListView(ListView):
     model = Equipment
     template_name = 'landing_page/home.html'
     context_object_name = 'equipments'
+    queryset = Equipment.objects.filter(available=True)
     ordering = ['-date_posted']
 
 #detail view
@@ -51,8 +52,8 @@ class EquipmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         'tool_name', 
         'model_number', 
         'serial_number', 
-        'description', 
         'rent_cost', 
+        'available',
         'image1',
         'image2',
         'image3'
