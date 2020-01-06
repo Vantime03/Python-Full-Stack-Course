@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="row">
                     <div class="article-metadata col-12">
-                        <a class="mr-2" href="#">{{ object.owner }}</a>
+                        <a class="mr-2" href="{% url 'user-equipment' object.owner.username %}">{{ object.owner }}</a>
                         <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
 
                         <div>

@@ -1,21 +1,6 @@
 {% extends 'landing_page/base.html'%}
 
 {% block content %}
-    <div class="row">
-        <form method="GET" action="{% url 'keyword-search' %}">
-            {% csrf_token %}
-            <div class="input-group mb-3 col-12">
-                <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">What Tool Are You looking to Rent?</span>
-                </div>
-                <input type="text" class="form-control" name="description" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                <button type="submit" class="btn btn-secondary ml-2">Search</button>
-            </div>
-            
-        </form>
-    </div>
-
-
     {% for equipment in equipments%}    
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ equipment.owner.profile.image.url }}">

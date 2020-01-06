@@ -1,31 +1,61 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Equipment, User
+from collections import ChainMap
 
-# list view option1
-def home(request): 
+# # list view option1
+# def home(request): 
     
-    context = {
-        'equipments_avail_true': Equipment.objects.filter(available=True),        
-    }
-    return render(request, 'landing_page/home.html', context)
+#     context = {
+#         'equipments': Equipment.objects.filter(available=True),        
+#     }
+#     return render(request, 'landing_page/home.html', context)
 
-# list view option1
+#list view option2
+class EquipmentListView(ListView):
+    model = Equipment
+    template_name = 'landing_page/home.html'
+    context_object_name = 'equipments'
+    queryset = Equipment.objects.filter(available=True)
+    paginate_by = 5
+
+#view a list of equipment uploaded by user
+class UserEquipmentListView(ListView):
+    model = Equipment
+    template_name = 'landing_page/user_equipment.html'
+    context_object_name = 'equipments'
+    queryset = Equipment.objects.filter(available=True)
+    ordering = ['-date_posted']
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Equipment.objects.filter(owner=user).order_by('-date_posted')
+
+# allow user to view their upload inventory
 def my_inventory(request): 
     user_id = request.user.id
     context = {
-        'equipments': Equipment.objects.filter(owner=user_id),        
+        'equipments': Equipment.objects.filter(owner=user_id)        
     }
     return render(request, 'landing_page/my_inventory.html', context)
 
-# #list view option2
-# class EquipmentListView(ListView):
-#     model = Equipment
-#     template_name = 'landing_page/home.html'
-#     context_object_name = 'equipments'
-#     queryset = Equipment.objects.filter(available=True)
-#     ordering = ['-date_posted']
+def keyword_search(request):
+    if request.method == 'GET':
+        search_key = request.GET.get('description')
+        result_from_tool_name = Equipment.objects.filter(tool_name = search_key)
+        result_from_description = Equipment.objects.filter(description = search_key)
+        result_from_model_number = Equipment.objects.filter(model_number = search_key)
+        result = result_from_tool_name 
+        context = {
+            'equipments': result_from_description.union(result_from_tool_name)
+        }
+        print(context)
+        return render(request, 'landing_page/keyword_search.html', context)
+    else:
+        return render(request, 'landing_page/home.html')
 
 #detail view
 class EquipmentDetailView(DetailView):
