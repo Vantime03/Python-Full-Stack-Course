@@ -45,14 +45,34 @@ def my_inventory(request):
 def keyword_search(request):
     if request.method == 'GET':
         search_key = request.GET.get('description')
-        result_from_tool_name = Equipment.objects.filter(tool_name = search_key)
-        result_from_description = Equipment.objects.filter(description = search_key)
-        result_from_model_number = Equipment.objects.filter(model_number = search_key)
-        result = result_from_tool_name 
-        context = {
-            'equipments': result_from_description.union(result_from_tool_name)
-        }
-        print(context)
+        cost = float(request.GET.get('rent_cost'))
+        sort = request.GET.get('sort')
+
+        if cost == 0:
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__gte = cost)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__gte = cost)
+        elif cost == 5:
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__lte = cost)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__lt = cost)
+        elif cost == 10:
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__lte = cost, rent_cost__gte = cost - 4)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__lt = cost, rent_cost__gte = cost - 4)
+        elif cost == 15:
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__lte = cost, rent_cost__gte = cost - 4)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__lt = cost, rent_cost__gte = cost - 4)
+        elif cost == 16:
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__gt = cost)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__gt = cost)
+
+        if sort == 'HighToLow':
+            context = {
+                'equipments': result_from_description.union(result_from_tool_name).order_by('-rent_cost')
+            }
+        else:
+            context = {
+                'equipments': result_from_description.union(result_from_tool_name).order_by('rent_cost')
+            }
+
         return render(request, 'landing_page/keyword_search.html', context)
     else:
         return render(request, 'landing_page/home.html')

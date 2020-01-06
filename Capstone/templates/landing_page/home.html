@@ -9,6 +9,23 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">What Tool Are You looking to Rent?</span>
                 </div>
                 <input type="text" class="form-control" name="description" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+
+                <select class="custom-select" name="rent_cost">
+                    <option selected value="0">Price Range</option>
+                    <option value="5">$5 or Less Per Day</option>
+                    <option value="10">$6 to $10 Per Day</option>
+                    <option value="15">$11 to $15 Per Day</option>
+                    <option value="16">$16 or More Per Day</option>
+                </select>
+                <select class="custom-select" name="sort">
+                    <option selected value="LowToHigh">Sort By</option>
+                    <option value="LowToHigh">Price (Low to High)</option>
+                    <option value="HighToLow">Price (High to Low)</option>
+                    <!-- <option value="15">$11 to $15 Per Day</option> -->
+                    <!-- <option value="16">$16 or More Per Day</option> -->
+                </select>
+                
+                
                 <button type="submit" class="btn btn-secondary ml-2">Search</button>
             </div>
             
