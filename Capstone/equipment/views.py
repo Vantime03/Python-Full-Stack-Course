@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 
 # # list view option1
 # def home(request): 
-    
 #     context = {
 #         'equipments': Equipment.objects.filter(available=True),        
 #     }
@@ -129,8 +128,6 @@ class EquipmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
-
-
 #delete view
 class EquipmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Equipment
@@ -143,9 +140,6 @@ class EquipmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == equipment.owner:
             return True
         return False
-
-
-
 
 def about(request): 
     return render(request, 'landing_page/about.html', {'title': 'About'})
@@ -160,20 +154,14 @@ def transaction_detail(request, id):
     else:
         borrower_id = User.objects.get(pk=request.user.id)
         equipment_id = Equipment.objects.get(pk=id)
-
-        # trans = Transaction(borrower_id = request.user.id)
-        # trans.save()
+        
+        #make the equipment avalable to false so that it won't show on home page. 
         Equipment.objects.filter(pk=id).update(available = False)
+
+        #create the transaction
         Transaction.objects.create(borrower_id=borrower_id, equipment_id=equipment_id)
         return redirect('home')
 
-# pers_type = Person_Type.objects.get(pers_type='Appelant') # assuming pers_type is unique
-# Person.objects.create(name='Adam', pers_type=pers_type) 
-
-
-        # borrower_id = request.user.id
-        # equipment_id = id
-        # Transaction.objects.create(equipment_id = equipment_id, borrower_id = borrower_id)
 
 
 
