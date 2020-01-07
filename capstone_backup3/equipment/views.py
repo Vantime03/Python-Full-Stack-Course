@@ -1,11 +1,9 @@
-from django.shortcuts import render, get_object_or_404, HttpResponse, redirect
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Equipment, User
-from transaction.models import Transaction
-from django.contrib.auth.decorators import login_required    
-
+from collections import ChainMap
 
 # # list view option1
 # def home(request): 
@@ -49,22 +47,22 @@ def keyword_search(request):
         search_key = request.GET.get('description')
         cost = float(request.GET.get('rent_cost'))
         sort = request.GET.get('sort')
-        
+
         if cost == 0:
-            result_from_tool_name = Equipment.objects.filter(available = True, tool_name__contains = search_key, rent_cost__gte = cost)
-            result_from_description = Equipment.objects.filter(available = True, description__contains = search_key, rent_cost__gte = cost)
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__gte = cost)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__gte = cost)
         elif cost == 5:
-            result_from_tool_name = Equipment.objects.filter(available = True, tool_name__contains = search_key, rent_cost__lte = cost)
-            result_from_description = Equipment.objects.filter(available = True, description__contains = search_key, rent_cost__lt = cost)
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__lte = cost)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__lt = cost)
         elif cost == 10:
-            result_from_tool_name = Equipment.objects.filter(available = True, tool_name__contains = search_key, rent_cost__lte = cost, rent_cost__gte = cost - 4)
-            result_from_description = Equipment.objects.filter(available = True, description__contains = search_key, rent_cost__lt = cost, rent_cost__gte = cost - 4)
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__lte = cost, rent_cost__gte = cost - 4)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__lt = cost, rent_cost__gte = cost - 4)
         elif cost == 15:
-            result_from_tool_name = Equipment.objects.filter(available = True, tool_name__contains = search_key, rent_cost__lte = cost, rent_cost__gte = cost - 4)
-            result_from_description = Equipment.objects.filter(available = True, description__contains = search_key, rent_cost__lt = cost, rent_cost__gte = cost - 4)
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__lte = cost, rent_cost__gte = cost - 4)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__lt = cost, rent_cost__gte = cost - 4)
         elif cost == 16:
-            result_from_tool_name = Equipment.objects.filter(available = True, tool_name__contains = search_key, rent_cost__gt = cost)
-            result_from_description = Equipment.objects.filter(available = True, description__contains = search_key, rent_cost__gt = cost)
+            result_from_tool_name = Equipment.objects.filter(tool_name__contains = search_key, rent_cost__gt = cost)
+            result_from_description = Equipment.objects.filter(description__contains = search_key, rent_cost__gt = cost)
 
         if sort == 'HighToLow':
             context = {
@@ -150,32 +148,5 @@ class EquipmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def about(request): 
     return render(request, 'landing_page/about.html', {'title': 'About'})
 
-@login_required
-def transaction_detail(request, id):
-    if request.method == "GET":
-        context = {
-            'equipment': Equipment.objects.get(pk=id)
-        }
-        return render(request, 'transaction/transaction_detail.html', context)
-    else:
-        borrower_id = User.objects.get(pk=request.user.id)
-        equipment_id = Equipment.objects.get(pk=id)
-
-        # trans = Transaction(borrower_id = request.user.id)
-        # trans.save()
-        Equipment.objects.filter(pk=id).update(available = False)
-        Transaction.objects.create(borrower_id=borrower_id, equipment_id=equipment_id)
-        return redirect('home')
-
-# pers_type = Person_Type.objects.get(pers_type='Appelant') # assuming pers_type is unique
-# Person.objects.create(name='Adam', pers_type=pers_type) 
-
-
-        # borrower_id = request.user.id
-        # equipment_id = id
-        # Transaction.objects.create(equipment_id = equipment_id, borrower_id = borrower_id)
-
-
-
-
-    
+# def home(request):
+#     return render(request, 'landing_page/home.html', {'title': 'home page'})

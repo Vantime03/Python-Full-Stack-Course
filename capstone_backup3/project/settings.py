@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'landing_page.apps.LandingPageConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'transaction.apps.TransactionConfig',
 ]
 
 MIDDLEWARE = [
@@ -110,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

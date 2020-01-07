@@ -1,0 +1,21 @@
+{% extends 'landing_page/base.html' %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Rent Form</legend>
+                <h1>Disclaimer & Agreement</h1>
+                <p>alfjladjfladsjflasdnvlasdnvlasdjvlasdjlasjfdlasjdflasjdfljdflasjflasjflajfdl</p>
+                <p class="article-content"> <strong>Tool Name:</strong> {{ equipment.tool_name }}</p>
+                <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
+                <p class="article-content"> <strong>Cost Per Day:</strong> ${{ equipment.rent_cost }}</p>
+                <p class="article-content"> <strong>Checkout Date & Time:</strong> {% now "F jS, Y" %}</p>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Rent Now</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock content%}
