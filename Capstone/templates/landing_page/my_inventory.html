@@ -21,17 +21,16 @@
                             <h2>
                                 <a class="article-title" href="{% url 'equipment-detail' equipment.id %}">{{ equipment.tool_name }}</a>
                             </h2>
-                        </div>
-
-                        <div class="col-6 rent-cost-badge">
-                                <a class="badge badge-success">
-                                    ${{ equipment.rent_cost }}/Day | Click to Rent
-                                </a>   
-                        </div>
-
-                        <div class="col-6">
                             <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
+                            <p class="article-content"> <strong>Cost Per Day:</strong> ${{ equipment.rent_cost }}</p>
+                            <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
+                            {% if equipment.available == True %}
+                                <p class="article-content"> <strong>Status:</strong>Available</p>
+                            {% else %}
+                                <p class="article-content"> <strong>Status:</strong> Currently Being Rented</p>
+                            {% endif %}
                         </div>
+                       
 
 
 
