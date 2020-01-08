@@ -12,10 +12,11 @@
                 
                 <div class="container">
                     <div class="row">
-                        <div class="article-metadata col-12">
+                        <div class="article-metadata col-8">    
                             <a class="mr-2" href="#">{{ equipment.owner }}</a>
                             <small class="text-muted">{{ equipment.date_posted|date:"F d, Y" }}</small>
                         </div>
+
 
                         <div class="col-6">
                             <h2>
@@ -25,14 +26,22 @@
                             <p class="article-content"> <strong>Cost Per Day:</strong> ${{ equipment.rent_cost }}</p>
                             <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
                             {% if equipment.available == True %}
-                                <p class="article-content"> <strong>Status:</strong>Available</p>
+                                <p>
+                                    <strong>Status: </strong>
+                                    <i class='fas fa-toggle-on' style='font-size:20px; color: green;'></i>
+                                    (Available)
+
+                                </p>
                             {% else %}
-                                <p class="article-content"> <strong>Status:</strong> Currently Being Rented</p>
+                                <p>
+                                    <strong>Status: </strong>
+                                    <i class='fas fa-toggle-on' style='font-size:20px; color: red;'></i>
+                                    (Currently Being Rented)
+
+                                </p>
                             {% endif %}
+                    
                         </div>
-                       
-
-
 
                         <!-- showinging pictures of the equipment will be rented -->
                         <div id="carouselExampleIndicators{{ equipment.id }}" class="carousel slide col-6" data-ride="carousel">
