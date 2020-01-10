@@ -9,10 +9,8 @@ class Transaction(models.Model):
     checkout_date_time = models.DateTimeField(default = timezone.now() + timezone.timedelta(hours=6))
     checkin_date_time = models.DateTimeField(blank = True, null = True)
     total_cost = models.DecimalField(max_digits=6, decimal_places=2, blank = True, null = True)
+    confirmation_code = models.CharField(max_length=9, blank = True, null = True)
     
-    def calculate_total_cost():
-        delta_date = checkin_date_time - checkout_date_time
-        cost = delta_date * Equipment.rent_cost(id = equipment_id)
 
     def __str__(self):
         return str(self.equipment_id)

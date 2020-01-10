@@ -4,17 +4,30 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Rent Form</legend>
-                <h1>Disclaimer & Agreement</h1>
-                <p>alfjladjfladsjflasdnvlasdnvlasdjvlasdjlasjfdlasjdflasjdfljdflasjflasjflajfdl</p>
-                <p class="article-content"> <strong>Tool Name:</strong> {{ equipment.tool_name }}</p>
-                <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
-                <p class="article-content"> <strong>Cost Per Day:</strong> ${{ equipment.rent_cost }}</p>
-                <p class="article-content"> <strong>Checkout Date & Time:</strong> {% now "F jS, Y" %}</p>
+                <div class="disclaimer mb-3">
+                    <h1>Disclaimer & Agreement</h1>
+                </div>
+                <div class="border-bottom mb-3">
+                    <ul>
+                        <li>Do not break it. You break you pay full price!</li>
+                        <li>Your rental date and time will start 6 hours from now and you can pick up the equipment from our local warehouse that open 24/7.</li>
+                        <li>Warehouse address: 2828 SW Corbett Portland, OR 97204 | Hours of Operation: 24/7</li>
+                        <li>To return equipment, you will return the equipment back to the warehouse address above.</li>
+                        <li>To complete the equipment return , you will tap/click "Complete Return" on the equipment item from your login profile</li>
+                    </ul>
+                    <br>
+                </div>
+
+                
+
+                <div class="col-6 mb-3 ml-3">
+                    <p class="article-content"> <strong>Tool Name:</strong> {{ equipment.tool_name }}</p>
+                    <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
+                    <p class="article-content"> <strong>Cost Per Day:</strong> ${{ equipment.rent_cost }}</p>
+                    <p class="article-content"> <strong>Checkout Date & Time:</strong> {% now "F jS, Y" %}</p>
+                    <button class="btn btn-outline-info" type="submit">Rent Now</button>
+                </div>    
             </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Rent Now</button>
-            </div>
         </form>
     </div>
 

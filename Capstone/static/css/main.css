@@ -93,6 +93,6 @@ a.article-title:hover {
   color: white;
 }
 
-/* .badge {
-  color: white;
-}  */
+.disclaimer {
+  text-align: center;
+}

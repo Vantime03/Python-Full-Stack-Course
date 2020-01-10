@@ -6,6 +6,7 @@ urlpatterns = [
     path('', EquipmentListView.as_view(), name='home'),
     path('user/<str:username>', UserEquipmentListView.as_view(), name='user-equipment'),
     path('myinventory/', views.my_inventory, name='my-inventory'),
+    path('myrental/', views.my_rental, name='my-rental'),
     path('filter/', views.keyword_search, name='keyword-search'),
     path('equipment/<int:pk>/', EquipmentDetailView.as_view(), name='equipment-detail'),
     path('equipment/<int:pk>/update/', EquipmentUpdateView.as_view(), name='equipment-update'),
@@ -13,5 +14,8 @@ urlpatterns = [
     path('equipment/new/', EquipmentCreateView.as_view(), name='equipment-create'),
     path('about/', views.about, name='about'),
     path('transaction_detail/<int:id>/', views.transaction_detail, name='transaction-detail'),
+    path('return_detail/<int:id>/', views.return_detail, name='return-detail'),
+    path('return_confirmation/<int:id>/', views.return_confirmation, name='return-confirmation'),
+
 ]
 

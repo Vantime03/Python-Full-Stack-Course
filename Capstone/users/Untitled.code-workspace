@@ -7,8 +7,10 @@
 			"path": "/Users/vanbinhluong/Documents/GitHub/Python-Full-Stack-Course/Capstone"
 		},
 		{
-			"path": "/Users/vanbinhluong/Documents/GitHub/Python-Full-Stack-Course/Django/To_do_lab"
+			"path": "/Users/vanbinhluong/Documents/GitHub/Python-Full-Stack-Course/Javascript/Lab10: Weather API"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Lab10: Weather API"
+	}
 }

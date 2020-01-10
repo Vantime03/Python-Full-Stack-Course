@@ -1,6 +1,7 @@
 {% extends 'landing_page/base.html'%}
 
 {% block content %}
+    <legend class="border-bottom mb-4">My Equipments</legend>
     {% for equipment in equipments %}    
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ equipment.owner.profile.image.url }}">
@@ -13,8 +14,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="article-metadata col-8">    
-                            <a class="mr-2" href="#">{{ equipment.owner }}</a>
+                            <a class="mr-2" href="{% url 'user-equipment' equipment.owner.username %}">{{ equipment.owner }}</a>
                             <small class="text-muted">{{ equipment.date_posted|date:"F d, Y" }}</small>
+                        </div>
+
+                        <div class="col-4" style="text-align: right;">
+                            <a href="{% url 'equipment-detail' equipment.id %}">Edit Listing</a>
                         </div>
 
 
@@ -30,14 +35,12 @@
                                     <strong>Status: </strong>
                                     <i class='fas fa-toggle-on' style='font-size:20px; color: green;'></i>
                                     (Available)
-
                                 </p>
                             {% else %}
                                 <p>
                                     <strong>Status: </strong>
                                     <i class='fas fa-toggle-on' style='font-size:20px; color: red;'></i>
                                     (Currently Being Rented)
-
                                 </p>
                             {% endif %}
                     
