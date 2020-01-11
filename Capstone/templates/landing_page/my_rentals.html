@@ -1,5 +1,9 @@
 {% extends 'landing_page/base.html'%}
 
+{% block title %}
+    <title>Tool Lending - My Inventories</title>
+{% endblock %}
+
 {% block content %}
     <legend class="border-bottom mb-4">My Rentals</legend>
     {% for transaction in transactions %}    

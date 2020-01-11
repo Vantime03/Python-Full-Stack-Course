@@ -1,5 +1,9 @@
 {% extends 'landing_page/base.html'%}
 
+{% block title %}
+    <title>Tool Lending - Equipment Detail</title>
+{% endblock %}
+
 {% block content %}
     <article class="media content-section">
         <img class="rounded-circle article-img" src="{{ object.owner.profile.image.url }}">
