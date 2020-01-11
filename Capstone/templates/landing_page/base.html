@@ -40,6 +40,8 @@
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
+                            <img src="" id="temp-icon" alt="">
+                            <a class="btn btn-primary mr-3" id="temperature"></a>
                             <a class="btn btn-primary mr-3" href="{% url 'equipment-create' %}">Upload New Equipment for Rent!</a>
                             <a class="btn btn-primary mr-3" href="{% url 'my-inventory' %}">My Equipment</a>
                             <a class="btn btn-primary mr-3" href="{% url 'my-rental' %}">My Rental(s)</a>
