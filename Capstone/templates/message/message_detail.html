@@ -5,7 +5,11 @@
             {% csrf_token %}
             <legend class="border-bottom mb-4">
                 <div name="message_subject">
-                    {{ conversation_subject.subject }}
+                    {% if conversation_subject.subject == "" %}
+                        <h1>Hello World</h1>
+                    {% else %}
+                        {{ conversation_subject.subject }}
+                    {% endif %}
                 </div>
             </legend>
             <div class="row">
