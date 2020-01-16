@@ -37,14 +37,15 @@
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{% url 'home' %}">Home</a>
-                        <!-- <a class="nav-item nav-link" href="{% url 'about' %}">About</a> -->
+                        <a href="{% url 'messages-list' %}" class="ml-3 mt-2">
+                            <i class='far fa-comments' style='font-size:18px;color:white'> Messages</i>
+                        </a>                    
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                             <img src="" id="temp-icon" alt="">
                             <a class="btn mr-3" id="temperature"></a>
-                            <a class="btn btn-primary mr-3" href="{% url 'equipment-create' %}">Upload New Equipment for Rent!</a>
                             <a class="btn btn-primary mr-3" href="{% url 'my-inventory' %}">My Equipment</a>
                             <a class="btn btn-primary mr-3" href="{% url 'my-rental' %}">My Rental(s)</a>
                             <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>

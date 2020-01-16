@@ -17,5 +17,11 @@ urlpatterns = [
     path('return_detail/<int:id>/', views.return_detail, name='return-detail'),
     path('return_confirmation/<int:id>/', views.return_confirmation, name='return-confirmation'),
 
+    path('messages_list/', views.messages_list, name='messages-list'),
+    path('message_detail/<int:id>', views.message_detail, name='message-detail'),
+
+
+
+
 ]
 

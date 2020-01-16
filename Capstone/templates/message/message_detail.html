@@ -1,0 +1,37 @@
+{% extends 'landing_page/base.html' %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <legend class="border-bottom mb-4">
+                <div name="message_subject">
+                    {{ conversation_subject.subject }}
+                </div>
+            </legend>
+            <div class="row">
+                <div class="col-6">
+                    {% for message in conversation %}
+                    <p>
+                        {% if message.sender == request.user %}
+                            <strong>You</strong>
+                        {% else %}
+                            <strong>{{ message.sender }}</strong>
+                        {% endif %}
+
+                        <small>
+                            ({{ message.created_date|date:"n-d-Y, P" }})
+                        </small>: {{ message.content }}
+                    </p>
+                    {% endfor %}
+                </div>
+                <div class="col-6">
+                    <textarea class="form-control col-12" name="textmessage" placeholder="Send a message" required></textarea>
+                    <button class="btn btn-secondary btn-sm mt-1 mb-1" type="submit">SEND
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>     
+        </form>
+    </div>
+
+{% endblock content%}

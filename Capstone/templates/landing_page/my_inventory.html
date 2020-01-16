@@ -5,7 +5,20 @@
 {% endblock %}
 
 {% block content %}
-    <legend class="border-bottom mb-4">My Equipments</legend>
+    <div class="row">
+        <div class="col-6">
+            <legend class="border-bottom">
+                My Equipments
+            </legend>
+        </div>
+
+        <div class="col-6" style="text-align: right;">
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'equipment-create' %}">Upload New Equipment</a>
+        </div>
+    </div>
+    
+
+  
     {% for equipment in equipments %}    
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ equipment.owner.profile.image.url }}">

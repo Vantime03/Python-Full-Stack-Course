@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.urls import reverse
 
-
-
 class Equipment(models.Model):
     model_number = models.CharField(max_length=200)
     serial_number = models.CharField(max_length=200)

@@ -4,10 +4,12 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Equipment, User
 from transaction.models import Transaction
+from message.models import Message
 from django.contrib.auth.decorators import login_required    
 from django.utils import timezone
 import random, string
 from datetime import datetime
+from django.db.models import Count
 
 # # list view option1
 # def home(request): 
@@ -215,6 +217,48 @@ def generate_confirmation_code():
         char = random.choice(charlist)
         short_url += char
     return short_url
+
+def messages_list(request):
+    if request.method == "GET":
+        user_id = request.user.id
+        message_sender = Message.objects.filter(sender = user_id)
+        message_receiver = Message.objects.filter(receiver = user_id)
+        # message = Message.objects.all().order_by('created_date')
+
+        context = {
+            'conversations': message_sender.order_by('subject', '-created_date').distinct('subject'),
+            'conversations': message_receiver.order_by('subject', '-created_date').distinct('subject')
+            }
+        return render(request, 'message/message_list.html', context)
+    else: 
+        return redirect('home')
+
+def message_detail(request, id):
+    user_id = request.user.id
+    if request.method == "GET":
+        context = {
+            'conversation': Message.objects.filter(sender = user_id),
+            'conversation_': Message.objects.filter(receiver = user_id),
+            'conversation': Message.objects.filter(equipment = id),
+            'conversation_subject': Message.objects.filter(equipment = id, sender = user_id).first()
+        }
+        return render(request, 'message/message_detail.html', context)
+    else:
+        content = request.POST.get('textmessage')
+        if content != "":
+            subject = (Message.objects.filter(equipment = id, sender = user_id).first()).subject
+            created_date = timezone.now()
+            receiver = (Message.objects.filter(equipment = id, sender = user_id).first()).receiver
+            sender = request.user
+            equipment = Equipment.objects.get(pk=id)
+            Message.objects.create(subject=subject, content=content, created_date=created_date, sender=sender, receiver=receiver, equipment=equipment)
+            return redirect(f'/message_detail/{id}')
+        else:
+            return redirect(f'/message_detail/{id}')
+            
+
+
+    
 
 
 
