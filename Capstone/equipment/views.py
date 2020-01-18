@@ -221,18 +221,72 @@ def generate_confirmation_code():
 def messages_list(request):
     if request.method == "GET":
         user_id = request.user.id
-        message_sender = Message.objects.filter(sender = user_id)
-        message_receiver = Message.objects.filter(receiver = user_id)
+        # message_sender = Message.objects.filter(sender = user_id)
+        # message_receiver = Message.objects.filter(receiver = user_id)
 
         context = {
-            'conversations_sender': message_sender.order_by('subject', '-created_date').distinct('subject'),
-            'conversations_receiver': message_receiver.order_by('subject', '-created_date').distinct('subject')
+            'conversations': Message.objects.filter(sender=user_id).order_by('subject', '-created_date').distinct('subject'),
+            'conversations': Message.objects.filter(receiver=user_id).order_by('subject', '-created_date').distinct('subject')
             }
         return render(request, 'message/message_list.html', context)
     else: 
         return redirect('home')
 
-def message_detail(request, id):
+def message_detail(request, id, subject):
+    user_id = request.user.id
+
+    if request.user == Equipment.objects.get(pk=id).owner:
+        username_strip = subject.split(" ")
+        
+        if request.method == "GET":
+            context = {
+            'conversation': Message.objects.filter(sender = user_id),
+            'conversation': Message.objects.filter(receiver = user_id),
+            'conversation': Message.objects.filter(equipment = id),
+            'conversation': Message.objects.filter(subject = subject),
+            # 'conversation': Message.objects.filter(receiver = user_id, sender = User.objects.get(username=username_strip[6]).id),
+            # 'conversation': Message.objects.filter(sender = user_id, receiver = User.objects.get(username=username_strip[6]).id),
+            'conversation_subject': Message.objects.filter(subject= subject),
+        }
+            return render(request, 'message/message_detail.html', context)
+        else:
+            content = request.POST.get('textmessage')
+            if content != "":
+                subject = subject
+                created_date = timezone.now()
+                receiver = User.objects.get(username=username_strip[7])
+                sender = request.user
+                equipment = Equipment.objects.get(pk=id)
+                Message.objects.create(subject=subject, content=content, created_date=created_date, sender=sender, receiver=receiver, equipment=equipment)
+                return redirect(f'/message_detail/{id}/{subject}')
+            else:
+                return redirect(f'/message_detail/{id}/{subject}')
+
+    elif request.user != Equipment.objects.get(pk=id).owner:
+        # message = Message.objects.filter(equipment = id, sender = user_id, receiver=Equipment.objects.get(pk=id).owner).first()
+        if request.method == "GET":
+            context = {
+            'conversation': Message.objects.filter(sender = request.user),
+            'conversation': Message.objects.filter(receiver = request.user),
+            'conversation': Message.objects.filter(equipment = id),
+            'conversation': Message.objects.filter(subject=subject),
+        }
+            return render(request, 'message/message_detail.html', context)
+        else:
+            content = request.POST.get('textmessage')
+            if content != "":
+                subject = subject
+                created_date = timezone.now()
+                receiver = Equipment.objects.get(pk=id).owner
+                sender = request.user
+                equipment = Equipment.objects.get(pk=id)
+                Message.objects.create(subject=subject, content=content, created_date=created_date, sender=sender, receiver=receiver, equipment=equipment)
+                return redirect(f'/message_detail/{id}/{subject}')
+            else:
+                return redirect(f'/message_detail/{id}/{subject}')
+
+
+def message_detail2(request, id):
     user_id = request.user.id
     # user = (Message.objects.filter(sender=request.user.id, equipment=id).first()).sender
     message_as_sender_check= Message.objects.filter(sender=user_id, equipment=id).first()
@@ -246,59 +300,17 @@ def message_detail(request, id):
         sender = request.user
         equipment = Equipment.objects.get(pk=id)
         Message.objects.create(subject=subject, content=content, created_date=created_date, sender=sender, receiver=receiver, equipment=equipment)        
-        return redirect(f'/message_detail/{id}')
+        return redirect(f'/message_detail/{id}/{subject}')
 
-    elif request.user == Equipment.objects.get(pk=id).owner:
-        message = Message.objects.filter(equipment = id, receiver = user_id).first()
-        
-        username_subject = Message.objects.filter(equipment = id, receiver = user_id).first().subject
-        username_strip = username_subject.split(" ")
-        
-        if request.method == "GET":
-            context = {
-            'conversation': Message.objects.filter(sender = user_id),
-            'conversation': Message.objects.filter(receiver = user_id),
-            'conversation': Message.objects.filter(equipment = id),
-            # 'conversation': Message.objects.filter(receiver = user_id, sender = User.objects.get(username=username_strip[6]).id),
-            # 'conversation': Message.objects.filter(sender = user_id, receiver = User.objects.get(username=username_strip[6]).id),
-            'conversation_subject': Message.objects.filter(equipment = id, receiver = user_id).first(),
-        }
-            return render(request, 'message/message_detail.html', context)
-        else:
-            content = request.POST.get('textmessage')
-            if content != "":
-                subject = message.subject
-                created_date = timezone.now()
-                receiver = message.receiver
-                sender = request.user
-                equipment = Equipment.objects.get(pk=id)
-                Message.objects.create(subject=subject, content=content, created_date=created_date, sender=sender, receiver=receiver, equipment=equipment)
-                return redirect(f'/message_detail/{id}')
-            else:
-                return redirect(f'/message_detail/{id}')
+    if request.user != Equipment.objects.get(pk=id).owner:
+        # message = Message.objects.filter(equipment = id, sender = user_id, receiver=Equipment.objects.get(pk=id).owner).first()
+        message = Message.objects.filter(equipment = id, sender = request.user).first()
+        return redirect(f'/message_detail/{id}/{message.subject}')
 
-    elif request.user != Equipment.objects.get(pk=id).owner:
-        message = Message.objects.filter(equipment = id, sender = user_id, receiver=Equipment.objects.get(pk=id).owner).first()
-        if request.method == "GET":
-            context = {
-            'conversation': Message.objects.filter(sender = request.user),
-            'conversation': Message.objects.filter(receiver = request.user),
-            'conversation': Message.objects.filter(equipment = id, subject__contains=request.user),
-            'conversation_subject': Message.objects.filter(equipment = id, sender = request.user).first(),
-        }
-            return render(request, 'message/message_detail.html', context)
-        else:
-            content = request.POST.get('textmessage')
-            if content != "":
-                subject = message.subject
-                created_date = timezone.now()
-                receiver = message.receiver
-                sender = request.user
-                equipment = Equipment.objects.get(pk=id)
-                Message.objects.create(subject=subject, content=content, created_date=created_date, sender=sender, receiver=receiver, equipment=equipment)
-                return redirect(f'/message_detail/{id}')
-            else:
-                return redirect(f'/message_detail/{id}')
+        
+        
+        
+       
     
   
     

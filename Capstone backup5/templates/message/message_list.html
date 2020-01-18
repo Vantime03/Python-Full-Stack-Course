@@ -1,0 +1,39 @@
+{% extends 'landing_page/base.html'%}
+
+{% block title %}
+    <title>Tool Lending - Message List</title>
+{% endblock %}
+
+{% block content %}
+    <legend class="border-bottom mb-4">Messages</legend>
+        <article class="media content-section">
+            <!-- <img class="article-img" src="{{ transaction.equipment_id.image1.url }}"> -->
+            <div class="media-body">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Message ID</th>
+                        <th scope="col">From</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Subject</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for message in conversations %}    
+                      <tr>
+                        <td>{{ message.id }}</td>
+                        <td>{{ message.sender }}</td>
+                        <td>{{ message.created_date }}</td>
+                        <td>
+                          <a href="{% url 'message-detail' message.equipment.id %}">
+                            {{ message.subject }}
+                          </a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+            </div>
+        </article>        
+{% endblock content %}

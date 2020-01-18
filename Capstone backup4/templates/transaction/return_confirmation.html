@@ -1,0 +1,30 @@
+{% extends 'landing_page/base.html' %}
+{% block content %}
+    <div class="content-section">
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ transaction.equipment_id.image1.url }}">
+            <div class="media-body">
+        
+                <div class="container">
+                    <div class="row">
+                        <div class="article-metadata col-8">
+                            <p class="mr-2" href="#">Tool Name: {{ transaction.equipment_id.tool_name }}</p>
+
+                            {% if transaction.confirmation_code == Null %}
+                                <p class="mr-2" href="#">Estimated Rent Cost Per Day: ${{ transaction.equipment_id.rent_cost}}</p>
+                            {% else %}
+                                <p class="mr-2" href="#">Final Cost: ${{ transaction.total_cost }}</p>
+                            {% endif %}
+
+                            <p class="mr-2" href="#">Checkout Date & Time: {{ transaction.checkout_date_time}}</p>
+                            <p class="mr-2" href="#">Checkin Date & Time: {{ transaction.checkin_date_time}}</p>
+                            <p class="mr-2" href="#">Confirmation Code: {{ transaction.confirmation_code}}</p>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </article>
+    </div>
+
+{% endblock content%}

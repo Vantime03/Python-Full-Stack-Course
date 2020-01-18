@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "/Users/vanbinhluong/Documents/GitHub/Python-Full-Stack-Course/Django/Blog"
+		},
+		{
+			"path": "/Users/vanbinhluong/Documents/GitHub/Python-Full-Stack-Course/Capstone"
+		},
+		{
+			"path": "/Users/vanbinhluong/Documents/GitHub/Python-Full-Stack-Course/Javascript/Lab10: Weather API"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Lab10: Weather API"
+	}
+}

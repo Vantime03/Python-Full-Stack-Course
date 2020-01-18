@@ -56,7 +56,7 @@
                         <div class="col-6">
                             <h2>
                                 <a class="article-title"
-                                    href="{% url 'equipment-detail' equipment.id %}">{{ equipment.tool_name }}</a>
+                                    href="{% url 'equipment-detail' equipment.id  %}">{{ equipment.tool_name }}</a>
                             </h2>
                         </div>
         
@@ -71,9 +71,12 @@
                                 ${{ equipment.rent_cost }}/ Day | Click to Rent
                             </a>
                             <br>
-                            <a class="badge badge-info" href="/message_detail/{{ equipment.id }}">
-                                Request More Infomation
-                            </a>
+                            {% if request.user != equipment.owner %}
+                                <a class="badge badge-info" href="/message_detail/{{ equipment.id }}">
+                                    Request More Infomation
+                                </a>
+                            {% endif %}
+
                         </div>
         
                         <div class="col-6">
