@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.contrib.auth.models import User
 from PIL import Image
 
@@ -26,3 +27,12 @@ class Profile(models.Model):
             output_zize = (300, 300) 
             img.thumbnail(output_zize)
             img.save(self.image.path )
+
+class Photo(models.Model):
+    uuid = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False,
+    )
+    created_at = models.DateTimeField(auto_now_add=True) 
+    title = models.CharField(max_length=100)
+    photo = models.FileField()
+
