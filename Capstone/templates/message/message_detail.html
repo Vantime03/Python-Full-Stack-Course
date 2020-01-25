@@ -5,7 +5,7 @@
             {% csrf_token %}
             <legend class="border-bottom mb-4">
                 <div name="message_subject">
-                    {{ conversation_subject.subject }}
+                    {{ conversation_subject }}
                 </div>
             </legend>
             <div class="row">
@@ -13,7 +13,8 @@
                     {% for message in conversation %}
                     <p>
                         {% if message.sender == request.user %}
-                            <strong>You</strong>
+                            <strong>You</strong>          
+
                         {% else %}
                             <strong>{{ message.sender }}</strong>
                         {% endif %}

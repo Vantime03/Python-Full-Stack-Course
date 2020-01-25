@@ -96,3 +96,40 @@ a.article-title:hover {
 .disclaimer {
   text-align: center;
 }
+
+.fa-sign-out-alt{
+  font-size: 18px;
+  color: red;
+}
+
+.fa-user {
+  font-size: 18px;
+  color: white;
+}
+
+.fa-box-open {
+  font-size: 18px;
+  color: white;
+}
+
+.fa-clipboard-list {
+  font-size: 18px;
+  color: white;
+}
+
+.fa-envelope-open-text {
+  font-size: 18px;
+  color: white;
+}
+
+.fa-thermometer-half {
+  font-size: 18px;
+  color: white;
+}
+
+.fa-home {
+  font-size: 18px;
+  color: white;
+}
+
+

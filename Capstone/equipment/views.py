@@ -223,7 +223,7 @@ def return_detail(request, id):
     days = round((checkin - checkout).days)
     if days < 1:
         days = 1
-        
+
     #this will calculate total cost
     cost_per_day = transaction_set.equipment_id.rent_cost
     total_cost = float(cost_per_day) * days
@@ -273,8 +273,6 @@ def generate_confirmation_code():
 def messages_list(request):
     if request.method == "GET":
         user_id = request.user.id
-        # message_sender = Message.objects.filter(sender = user_id)
-        # message_receiver = Message.objects.filter(receiver = user_id)
 
         context = {
             'conversations': Message.objects.filter(sender=user_id).order_by('subject', '-created_date').distinct('subject'),
@@ -288,17 +286,14 @@ def message_detail(request, id, subject):
     user_id = request.user.id
 
     if request.user == Equipment.objects.get(pk=id).owner:
-        username_strip = subject.split(" ")
-        
+        username_strip = subject.split(" ")        
         if request.method == "GET":
             context = {
             'conversation': Message.objects.filter(sender = user_id),
             'conversation': Message.objects.filter(receiver = user_id),
             'conversation': Message.objects.filter(equipment = id),
             'conversation': Message.objects.filter(subject = subject),
-            # 'conversation': Message.objects.filter(receiver = user_id, sender = User.objects.get(username=username_strip[6]).id),
-            # 'conversation': Message.objects.filter(sender = user_id, receiver = User.objects.get(username=username_strip[6]).id),
-            'conversation_subject': Message.objects.filter(subject= subject),
+            'conversation_subject': subject,
         }
             return render(request, 'message/message_detail.html', context)
         else:
@@ -315,7 +310,6 @@ def message_detail(request, id, subject):
                 return redirect(f'/message_detail/{id}/{subject}')
 
     elif request.user != Equipment.objects.get(pk=id).owner:
-        # message = Message.objects.filter(equipment = id, sender = user_id, receiver=Equipment.objects.get(pk=id).owner).first()
         if request.method == "GET":
             context = {
             'conversation': Message.objects.filter(sender = request.user),
@@ -345,7 +339,7 @@ def message_detail2(request, id):
     # message_as_receiver_check= Message.objects.filter(receiver=user_id, equipment=id).first()
 
     if message_as_sender_check == None and request.user != Equipment.objects.get(pk=id).owner:
-        subject = f"Interested in renting {(Equipment.objects.get(pk=id)).tool_name} from {request.user} on {datetime.today().strftime('%m-%d-%Y')}"
+        subject = f"Interested in renting {(Equipment.objects.get(pk=id)).tool_name} from {request.user} | Inquiry date: {datetime.today().strftime('%m-%d-%Y')}"
         content = "I am interested and would like to get more information"
         created_date = timezone.now()
         receiver = Equipment.objects.get(pk=id).owner
