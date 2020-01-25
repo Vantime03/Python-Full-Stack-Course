@@ -1,4 +1,10 @@
 {% extends 'landing_page/base.html' %}
+<!-- {% load static %} -->
+
+
+<!-- <script src="{% static 'js/client.js' %}"></script> -->
+<!-- <script src="https://js.stripe.com/v3"></script> -->
+
 {% block content %}
     <div class="content-section">
         <form method="POST">
@@ -23,10 +29,21 @@
                     <p class="article-content"> <strong>Description:</strong> {{ equipment.description }}</p>
                     <p class="article-content"> <strong>Cost Per Day:</strong> ${{ equipment.rent_cost }}</p>
                     <p class="article-content"> <strong>Checkout Date & Time:</strong> {% now "F jS, Y" %}</p>
-                    <button class="btn btn-outline-info" type="submit">Rent Now</button>
+                    <!-- <button class="btn btn-outline-info" id="checkout-button">Rent Now</button> -->
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key = {{ pk_stripe }}
+                    data-description="A Django Charge"
+                    data-amount= {{ rentCost_deposit }}
+                    data-locale="auto">
+                    </script>
+
                 </div>    
+
             </fieldset>
         </form>
+       
+
     </div>
 
 {% endblock content%}
+

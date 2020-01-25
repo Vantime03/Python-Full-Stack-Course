@@ -10,6 +10,11 @@ from django.utils import timezone
 import random, string
 from datetime import datetime
 from django.db.models import Count
+from decouple import config
+import stripe
+dir(stripe.Charge)
+from django.conf import settings
+
 
 # # list view option1
 # def home(request): 
@@ -53,7 +58,7 @@ def my_rental(request):
         user_id = request.user.id
         equipments = Equipment.objects.all()
         context = {
-            'transactions': Transaction.objects.filter(borrower_id=user_id).order_by('checkin_date_time'),
+            'transactions': Transaction.objects.filter(borrower_id=user_id).order_by('-checkin_date_time'),
             }
         return render(request, 'landing_page/my_rentals.html', context)
     else: 
@@ -159,9 +164,14 @@ def about(request):
 
 @login_required
 def transaction_detail(request, id):
+    equipment_id = Equipment.objects.get(pk=id)
+    rentCost_deposit = round(equipment_id.rent_cost*100,0)
+
     if request.method == "GET":
         context = {
-            'equipment': Equipment.objects.get(pk=id)
+            'equipment': Equipment.objects.get(pk=id),
+            'pk_stripe': config('stripe_publish'),
+            'rentCost_deposit': rentCost_deposit
         }
         return render(request, 'transaction/transaction_detail.html', context)
     else:
@@ -173,35 +183,77 @@ def transaction_detail(request, id):
 
         #create the transaction
         Transaction.objects.create(borrower_id=borrower_id, equipment_id=equipment_id)
+
+        # Set your secret key: remember to change this to your live secret key in production
+        # See your keys here: https://dashboard.stripe.com/account/apikeys
+        stripe.api_key = config('stripe_secret')
+        # charge = stripe.Charge.create(
+        #     amount=round(equipment_id.rent_cost*100,0),
+        #     currency='usd',
+        #     source='tok_visa',
+        #     receipt_email=request.user.email,
+        #     metadata={'order_id': Transaction.objects.get(borrower_id=borrower_id, equipment_id=equipment_id, checkin_date_time = None).id }
+        # )
+        charge = stripe.PaymentIntent.create(
+            amount=round(equipment_id.rent_cost*100,0),
+            currency='usd',
+            receipt_email=request.user.email,
+            metadata={'order_id': Transaction.objects.get(borrower_id=borrower_id, equipment_id=equipment_id, checkin_date_time = None).id },
+            payment_method_types=['card'],
+            capture_method='manual',
+        )
+        charge_json = stripe.PaymentIntent.retrieve(charge.id)
+        transactionid = Transaction.objects.get(borrower_id=borrower_id, equipment_id=equipment_id, checkin_date_time = None).id
+        charge_id = charge_json['id']
+        Transaction.objects.filter(pk=transactionid).update(confirmation_code=charge_id)
+
         return redirect('home')
 
 @login_required
 def return_detail(request, id):
-    confirmation_code = generate_confirmation_code()
-    Transaction.objects.filter(pk=id).update(confirmation_code=confirmation_code, checkin_date_time=timezone.now())
+    Transaction.objects.filter(pk=id).update(checkin_date_time=timezone.now())
 
     #getting checkin and checkout datetime
     transaction_set = Transaction.objects.get(pk=id)
     checkin = transaction_set.checkin_date_time
     checkout = transaction_set.checkout_date_time
 
+
     #this will convert into days
-    days = round((((checkin - checkout).seconds) / 86400),2)
+    days = round((checkin - checkout).days)
+    if days < 1:
+        days = 1
+        
     #this will calculate total cost
     cost_per_day = transaction_set.equipment_id.rent_cost
     total_cost = float(cost_per_day) * days
-    # print(f"**********************{total_cost}")
+
 
     # transaction_set.equipment_id
     Equipment.objects.filter(pk = transaction_set.equipment_id.id).update(available = True)
+
+    #confirm and capture stripe charge
+    cost_capture = int(total_cost)
+    stripe.api_key = config('stripe_secret')
+    charge_id = Transaction.objects.get(pk=id).confirmation_code
+
+    stripe.PaymentIntent.confirm(
+        charge_id,
+        payment_method="pm_card_visa",
+    )
+
+    charge = stripe.PaymentIntent.capture(
+        charge_id,
+        amount_to_capture=round(cost_capture*100,0)
+    )
     
+    #update tranasaction with cost
     Transaction.objects.filter(pk=id).update(total_cost=total_cost)
     context = {
         'transaction': Transaction.objects.get(pk=id)
     }
     return render(request, 'transaction/return_confirmation.html', context)
     # return HttpResponse(id)
-
 
 @login_required
 def return_confirmation(request, id):

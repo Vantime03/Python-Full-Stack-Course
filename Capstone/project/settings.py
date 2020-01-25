@@ -150,3 +150,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
 
 LOGIN_URL = 'login'
+
+
+#stripe payment info
+STRIPE_SECRET_KEY = config('stripe_secret')
+STRIPE_PUBLISHABLE_KEY = config('stripe_publish')
+
+

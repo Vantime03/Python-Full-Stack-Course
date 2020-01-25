@@ -15,7 +15,7 @@
                         <div class="article-metadata col-8">    
                             <p class="mr-2" href="#">Tool Name: {{ transaction.equipment_id.tool_name }}</p>
 
-                            {% if transaction.confirmation_code == Null %}
+                            {% if transaction.total_cost == Null %}
                                 <p class="mr-2" href="#">Estimated Rent Cost Per Day: ${{ transaction.equipment_id.rent_cost}}</p>
                             {% else %}
                                 <p class="mr-2" href="#">Final Cost: ${{ transaction.total_cost }}</p>
