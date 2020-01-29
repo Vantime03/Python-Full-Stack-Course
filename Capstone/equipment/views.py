@@ -29,7 +29,7 @@ class EquipmentListView(ListView):
     template_name = 'landing_page/home.html'
     context_object_name = 'equipments'
     queryset = Equipment.objects.filter(available=True)
-    paginate_by = 5
+    paginate_by = 3
 
 #view a list of equipment uploaded by user
 class UserEquipmentListView(ListView):

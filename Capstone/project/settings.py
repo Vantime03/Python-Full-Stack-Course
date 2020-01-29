@@ -156,4 +156,12 @@ LOGIN_URL = 'login'
 STRIPE_SECRET_KEY = config('stripe_secret')
 STRIPE_PUBLISHABLE_KEY = config('stripe_publish')
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('email_host')
+EMAIL_HOST_PASSWORD = config('email_password')
+
+
 
