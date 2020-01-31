@@ -132,4 +132,14 @@ a.article-title:hover {
   color: white;
 }
 
+.fa-facebook-square {
+  font-size: 24px;
+  color: rgb(12, 152, 233);
+}
+
+.fa-twitter-square {
+  font-size: 24px;
+  color: rgb(12, 152, 233);
+}
+
 
